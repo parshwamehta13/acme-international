@@ -103,20 +103,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #EMAIL_USE_TLS = True
-EMAIL_HOST = 'webmail.daiict.ac.in'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = '201301103@daiict.ac.in'
-EMAIL_HOST_PASSWORD = 'commerce865sucks'
-DEFAULT_FROM_EMAIL = '201301103@daiict.ac.in'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'webmail.daiict.ac.in'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = '201301103@daiict.ac.in'
+# EMAIL_HOST_PASSWORD = 'commerce865sucks'
+# DEFAULT_FROM_EMAIL = '201301103@daiict.ac.in'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# EMAIL_USE_TLS = False
-# EMAIL_HOST = 'localhost'
-# EMAIL_HOST_USER=''
-# EMAIL_HOST_PASSWORD=''
-# EMAIL_PORT = 1025
-# DEFAULT_FROM_EMAIL = 'webmaster@localhost'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''
+EMAIL_PORT = 1025
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

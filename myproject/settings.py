@@ -102,9 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_HOST_USER = 'parshwamehta13@gmail.com'
 EMAIL_HOST_PASSWORD = '!Parshwa1995!'
 DEFAULT_FROM_EMAIL = 'parshwamehta13@gmail.com'

@@ -102,12 +102,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_USE_TLS = True
+EMAIL_HOST = 'webmail.daiict.ac.in'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'harshit94296'
-EMAIL_HOST_PASSWORD = 'har9429601524'
-DEFAULT_FROM_EMAIL = 'harshit94296@gmail.com'
+EMAIL_HOST_USER = '201301103@daiict.ac.in'
+EMAIL_HOST_PASSWORD = 'commerce865sucks'
+DEFAULT_FROM_EMAIL = '201301103@daiict.ac.in'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # EMAIL_USE_TLS = False

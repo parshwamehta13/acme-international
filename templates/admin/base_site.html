@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Acme International | Site Administration{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}"> Acme International Admin</a></h1>
+<a href ="{% url 'forgot_password1' %}"> forgot password?</a>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

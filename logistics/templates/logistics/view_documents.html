@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Document</title>
+</head>
+<body>
+	<table border="1" style="width:100%">
+		<tr>
+		    <th>Document</th>
+		    <th>Name</th>
+		    <th>Trip No.</th>
+	  	</tr>
+		{% for document in documents %}
+	  	<tr>
+		    <td>{{document.upload}}</td>
+		    <td>{{document.name}}</td>
+		    <td>{{document.trip}}</td>
+	  	</tr>
+	  	{% endfor %}
+	</table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Expenses</title>
+</head>
+<body>
+	<table border="1" style="width:100%">
+		<tr>
+		    <th>Bill</th>
+		    <th>Amount</th>
+		    <th>Reason</th>
+		    <th>Trip</th>
+		    <th>Employee</th>
+	  	</tr>
+		{% for expense in expenses %}
+	  	<tr>
+		    <td>{{expense.bill}}</td>
+		    <td>{{expense.amount}}</td>
+		    <td>{{expense.reason}}</td>
+		    <td>{{expense.trip}}</td>
+		    <td>{{expense.employee}}</td>
+	  	</tr>
+	  	{% endfor %}
+	</table>
+</body>
+</html>

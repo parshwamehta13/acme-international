@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Trips</title>
+</head>
+<body>
+	<form action="" method="get">
+        <input type="text" name="query">
+        <input type="submit" value="Search">
+    </form>
+	<table border="1" style="width:100%">
+		<tr>
+		    <th>Truck Number</th>
+		    <th>Source</th> 
+		    <th>Destination</th>
+		    <th>Distance</th>
+		    <th>Shipper</th> 
+		    <th>Consignee</th>
+		    <th>Goods Type</th>
+		    <th>Continer Number</th>
+		    <th>Weight</th>
+		    <th>Date</th>
+	  	</tr>
+		{% for trip in trips %}
+	  	<tr>
+		    <td>{{trip.truck_registration_number}}</td>
+		    <td>{{trip.trip_source}}</td> 
+		    <td>{{trip.trip_destination}}</td>
+		    <td>{{trip.trip_distance}}</td>
+		    <td>{{trip.trip_shipper}}</td> 
+		    <td>{{trip.trip_consignee}}</td>
+		    <td>{{trip.trip_goods_type}}</td>
+		    <td>{{trip.trip_container_number}}</td>
+		    <td>{{trip.trip_weight}}</td>
+		    <td>{{trip.trip_date}}</td>
+	  	</tr>
+	  	{% endfor %}
+	</table>
+</body>
+</html>

@@ -8,21 +8,23 @@ from homepage.models import Employee_Detail
 
 # Create your models here.
 @python_2_unicode_compatible
-class Account (models.Model):
+class BankAccount (models.Model):
 	account_number = models.BigIntegerField(unique=True)
 	currency_type_choices = (('Uganda Shilling','Uganda Shilling'),('USD','USD'),('Euro','Euro'),('Kenya Shillings','Kenya Shillings'),('Congolese Franc','Congolese Franc'),('Rwanda Franc',' Rwanda Franc'),('INR','INR'))
 	currency_type = models.CharField(max_length=20,choices=currency_type_choices,default='USD')
-	amount = models.IntegerField(default=0)	
+	amount = models.PositiveIntegerField(default=0)	
 
 	def __str__ (self):
 		return str(self.account_number)
 
 @python_2_unicode_compatible
 class Transaction (models.Model):
-	account_number = models.ForeignKey(Account,on_delete=models.CASCADE)
+	account_number = models.ForeignKey(BankAccount,on_delete=models.CASCADE)
 	transaction_date = models.DateField(default=datetime.date.today)
 	transaction_details = models.TextField()
 	transaction_type_choices = (('Debit','Debit'),('Credit','Credit'))
+	payment_mode_choices = (('Cheque','Cheque'),('Cash','Cash'))
+	payment_mode = models.CharField(max_length=30,choices=payment_mode_choices,default='Cash')
 	transaction_type = models.CharField(max_length=10,choices=transaction_type_choices,default='Debit')
 	transaction_amount = models.IntegerField()
 	#account_balance = models.IntegerField(default=0)
@@ -31,10 +33,10 @@ class Transaction (models.Model):
 		return str(self.account_number.account_number)+" "+str(self.transaction_type)+" "+str(self.transaction_amount)
 
 @python_2_unicode_compatible
-class EmployeeCash (models.Model):
+class EmployeeCashBook (models.Model):
 	#employee = models.ForeignKey(User)
 	employee_number = models.ForeignKey(Employee_Detail)
-	account_number = models.ForeignKey(Account)
+	account_number = models.ForeignKey(BankAccount)
 	amount_added = models.IntegerField()
 	transaction_date = models.DateField(default=datetime.date.today)
 	transaction_details = models.TextField()
@@ -57,4 +59,10 @@ def update_cash_in_hand (sender, instance,**kwargs):
 	instance.employee_number.save()
 	instance.account_number.save()
 
-post_save.connect(update_cash_in_hand, sender=EmployeeCash)
+post_save.connect(update_cash_in_hand, sender=EmployeeCashBook)
+
+def check_transaction (sender,instance,**kwargs):
+	if instance.transaction_type == 'Debit' and instance.account_number.amount - instance.transaction_amount < 0:
+		raise Exception("Not enough balance")
+
+pre_save.connect(check_transaction,sender=Transaction)

@@ -34,6 +34,7 @@
 	        <th>Deadline</th>
 	        <th>Discription</th>
 	        <th>Status</th>
+	        <th>Priority</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -48,6 +49,7 @@
 	        {% else %}
 	        <td><span class="glyphicon glyphicon-ok"></span></td>
 	        {% endif %}
+	        <td>{{task.priority}}</td>
 	      </tr>
 	      {% endfor %}
 	    </tbody>

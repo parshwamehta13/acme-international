@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'logistics',
     'homepage',
     'trade',
-    'accounts'
+    'accounts',
+    'retail',
 ]
 
 MIDDLEWARE_CLASSES = [

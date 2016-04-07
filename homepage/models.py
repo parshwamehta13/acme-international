@@ -19,6 +19,8 @@ class Task (models.Model):
 	assigned_on = models.DateField(default=datetime.date.today)
 	deadline = models.DateField()
 	status = models.BooleanField(default=False)
+	priority_choice = (('Important','Important'),('Urgent','Urgent'),('Normal Priority','Normal Priority'))
+	priority = models.CharField(max_length=20,choices=priority_choice,default='Normal Priority')
 
 	def __str__(self):
 		return str(self.assigned_to.username)+" "+str(self.assigned_on)+" "+str(self.status)

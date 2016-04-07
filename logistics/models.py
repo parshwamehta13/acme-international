@@ -22,9 +22,10 @@ class Trip (models.Model):
 	trip_shipper = models.CharField(max_length=50,blank=True)
 	trip_consignee = models.CharField(max_length=50,blank=True)
 	trip_goods_type = models.CharField(max_length=50,blank=True)
-	trip_container_number = models.IntegerField(default=100)
+	trip_container_number = models.CharField(max_length=50,blank=True)
 	trip_weight = models.IntegerField(default=100)
-	trip_date = models.DateField(default=datetime.date.today)
+	trip_start_date = models.DateField(default=datetime.date.today)
+	trip_end_date = models.DateField(default=datetime.date.today)
 
 	def __str__(self):
 		return str(self.id)
@@ -38,7 +39,7 @@ class Document (models.Model):
 		return self.name
 
 class Expense (models.Model):
-	bill = models.FileField(upload_to='uploads/expense/%Y/%m/%d/')
+	bill = models.FileField(upload_to='uploads/expense/%Y/%m/%d/',blank=True)
 	amount = models.IntegerField(blank=True)
 	reason = models.TextField(blank=True)
 	trip = models.ForeignKey(Trip,on_delete=models.CASCADE)
@@ -46,6 +47,11 @@ class Expense (models.Model):
 
 	def __str__(self):
 		return str(self.trip.truck_registration_number)+" "+str(self.amount)
+
+class TruckDocument (models.Model):
+	truck = models.ForeignKey(Truck)
+	document = models.FileField(upload_to='uploads/%Y/%m/%d/')
+	document_name = models.CharField(max_length=30)
 
 def update_cash_in_hand(sender, instance,**kwargs):
 	instance.employee.cash_in_hand = instance.employee.cash_in_hand -  instance.amount

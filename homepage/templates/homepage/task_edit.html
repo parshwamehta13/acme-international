@@ -1,0 +1,63 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">New truck</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s2 offset-s2">
+        <label for="assigned to"> Assigned to</label>
+    </div>
+    <div class="col s5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.assigned_to}} <br>
+    </div>
+    </div>
+
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="taskdescription"> Task description</label>
+    </div>
+    <div class="col-sm-5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.task_description}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="assigned on"> Assigned on</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.assigned_on}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="deadline"> Deadline</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.deadline}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="status"> Status</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.status}} <br>
+    </div>
+    </div>
+ <div class="center-align">
+        <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+    </form>
+ {% endblock %}
+ 

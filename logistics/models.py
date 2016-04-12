@@ -58,3 +58,19 @@ def update_cash_in_hand(sender, instance,**kwargs):
 	instance.employee.save()
 
 post_save.connect(update_cash_in_hand, sender=Expense)
+
+class Tripsearch(models.Model):
+	trip_search_item = models.CharField(max_length=300)
+	trip_search_by = (('trip_source','Trip Source'),('trip_date','Trip Date'),('truck_registration_number','Truck Number'))
+	trip_type = models.CharField(max_length=100,choices=trip_search_by,default='Trip Source')
+	def __str__(self):
+		return str(self.id)
+
+
+class Trucksearch(models.Model):
+	truck_search_item = models.CharField(max_length=300)
+	truck_search_by = (('truck_registration_number','Truck registration number'),('truck_driver','Truck Driver'))
+	truck_type = models.CharField(max_length=100,choices=truck_search_by,default='Truck Driver')
+	def __str__(self):
+		return str(self.id)
+	

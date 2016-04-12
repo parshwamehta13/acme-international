@@ -1,0 +1,45 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	 
+	
+		<div class="row">
+		<h4 class="col l12 s12 headingcolour">Transaction {{transaction_number}}</h4>
+		<h4 class="col s2 headingcolour">Documents</h4>  
+		<a  href="{% url 'docs_new_t' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+	</div>
+
+		{% if docus %}
+		
+	  <table class="striped">	  	
+	    <thead>
+	      <tr>
+	        <th>Upload</th>
+	        <th>Name</th>
+	        <th>Transaction</th>	        
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for docs in docus %}	    	
+	      <tr>
+	        <td><a href="/media/{{docs.upload}}">{{docs.upload}}</a></td>
+	        <td>{{docs.name}}</td>
+	        <td>{{docs.transaction_number.id}}</td>
+	        
+
+	        
+	       
+	        
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+	  {% else %}
+	  <p>No results !</p>
+	  {% endif %}
+	</div>
+	    </form>
+ {% endblock %}

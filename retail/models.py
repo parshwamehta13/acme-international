@@ -15,7 +15,7 @@ class Invoice (models.Model):
 	vat = models.IntegerField()
 
 	def __str__ (self):
-		return str(self.invoice_number)
+		return str(self.invoice_number)+" "+str(self.id)
 
 class Receipt (models.Model):
 	receipt_number = models.IntegerField()
@@ -29,4 +29,18 @@ class Receipt (models.Model):
 	balance = models.IntegerField()
 
 	def __str__ (self):
-		return str(self.receipt_number)
+		return str(self.receipt_number)+" "+str(self.id)
+
+class Receiptsearch(models.Model):
+	receipt_search_item = models.CharField(max_length=300)
+	receipt_search_by = (('receipt_number','Receipt Number'),('receipt_from','Receipt From'),('payment_mode','Payment Mode'),('credited_to','Credited To'),('balance','Balance'),('date','Date'))
+	receiptsearch_type = models.CharField(max_length=20,choices=receipt_search_by)
+	def __str__(self):
+		return str(self.id)
+
+class Invoicesearch(models.Model):
+	invoice_search_item = models.CharField(max_length=300)
+	invoice_search_by = (('invoice_number','Invoice Number'),('date','Date'),('invoiced_to','Invoiced To'),('quantity','Quantity'),('unit_price','Unit Price'),('total_price','Total Price'),('vat','VAT'))
+	invoicesearch_type = models.CharField(max_length=20,choices=invoice_search_by)
+	def __str__(self):
+		return str(self.id)

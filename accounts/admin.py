@@ -11,7 +11,7 @@ class TransactionAdmin (admin.ModelAdmin):
 
 class BankAccountAdmin (admin.ModelAdmin):
 	inlines = [TransactionInLine]
-	list_display = ('account_number','currency_type','amount')
+	list_display = ('account_number','account_holder','bank','amount')
 
 class EmployeeCashBookAdmin(admin.ModelAdmin):
 	list_display = ('employee_number','transaction_date','account_number','amount_added','transaction_details')

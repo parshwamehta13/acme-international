@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^$',views.index,name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^homepage/',include('homepage.urls')),
-    url(r'^logistics/',include('logistics.urls')),
+    #url(r'^logistics/',include('logistics.urls')),
     url(r'^passreset/$',auth_views.password_reset,name='forgot_password1'),
     url(r'^passresetdone/$',auth_views.password_reset_done,name='password_reset_done'),
     url(r'^passresetconfirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',auth_views.password_reset_confirm,name='password_reset_confirm'),

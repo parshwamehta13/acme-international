@@ -11,7 +11,7 @@ class Employee_Detail(models.Model):
 	cash_in_hand = models.IntegerField(default=0)
 
 	def __str__(self):
-		return str(self.user.username)
+		return str(self.user.username)+" "+str(self.salary)
 
 class Task (models.Model):
 	assigned_to = models.ForeignKey(User)
@@ -19,8 +19,16 @@ class Task (models.Model):
 	assigned_on = models.DateField(default=datetime.date.today)
 	deadline = models.DateField()
 	status = models.BooleanField(default=False)
-	priority_choice = (('Important','Important'),('Urgent','Urgent'),('Normal Priority','Normal Priority'))
-	priority = models.CharField(max_length=20,choices=priority_choice,default='Normal Priority')
+	priority_choices = (('Urgent','Urgent'),('Normal Priority','Normal Priority'),('Low Priority','Low Priority'))
+	priority = models.CharField(max_length=20,choices=priority_choices,default='Normal Priority')
 
 	def __str__(self):
 		return str(self.assigned_to.username)+" "+str(self.assigned_on)+" "+str(self.status)
+
+class Employeesearch(models.Model):
+	employee_search_item = models.CharField(max_length=300)
+	employee_search_by = (('salary','Salary'),('user','Employee name'))
+	employeesearch_type = models.CharField(max_length=20,choices=employee_search_by)
+	
+	def __str__(self):
+		return str(self.id)

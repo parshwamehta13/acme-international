@@ -1,0 +1,52 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">Add Document</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" enctype="multipart/form-data" class="post-form">{% csrf_token %}
+    	<div class="row">
+            <div class="col s3 offset-s5">
+    		<div class="file-field input-field">
+      <div class="btn">
+        <span>Choose file</span>
+        <input type="file" multiple>
+      </div>
+      <div class="file-path-wrapper">
+        {{ form.upload}}
+      </div>
+    </div>
+</div>
+</div>
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver">File Name</label>
+    </div>
+    <div class="col-sm-5">
+    	
+        {{ form.name}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Transaction Number</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.transaction_number}} <br>
+    </div>
+    </div>
+     
+    <div class="center-align">
+        <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+    
+    </form>
+ {% endblock %}
+ 

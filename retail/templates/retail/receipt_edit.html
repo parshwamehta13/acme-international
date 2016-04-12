@@ -1,0 +1,87 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">New Receipt</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s2 offset-s2">
+        <label for="assigned to"> Receipt Number</label>
+    </div>
+    <div class="col s5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.receipt_number}} <br>
+    </div>
+    </div>
+
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="taskdescription"> Date</label>
+    </div>
+    <div class="col-sm-5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.date}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="assigned on"> Receipt From</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.receipt_from}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="deadline"> Amount Received</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.amount_received}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="status"> Payment For</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.payment_for}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="status"> Payment For</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.payment_mode}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="status"> Credited To</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.credited_to}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="status"> Balance</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.balance}} <br>
+    </div>
+    </div>
+ <div class="center-align">
+        <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+    </form>
+ {% endblock %}
+ 

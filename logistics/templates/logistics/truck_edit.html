@@ -1,0 +1,53 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">New truck</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s2 offset-s2">
+        <label for="id_registration"> Registration number</label>
+    </div>
+    <div class="col s5">
+    	<i class="material-icons prefix shiftdown">mode_edit</i>
+        {{ form.truck_registration_number}} <br>
+    </div>
+    </div>
+
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Driver name</label>
+    </div>
+    <div class="col-sm-5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.truck_driver}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Truck Type</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.truck_type}} <br>
+    </div>
+    </div>
+ <div class="center-align">
+        <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+    </form>
+ {% endblock %}
+    <script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+
+    </script>
+   

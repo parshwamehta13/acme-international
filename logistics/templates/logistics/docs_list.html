@@ -1,0 +1,35 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">	 	
+		<div class="row">
+		<h4 class="col l3 s12 headingcolour">Document List</h4>  
+		<a  href="{% url 'docs_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+	</div>
+		{% if docus %}		
+	  <table class="striped centered bordered responsive-table">	  	
+	    <thead>
+	      <tr>
+	        <th>Upload</th>
+	        <th>Name</th>
+	        <th>Trip</th>	        
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for docs in docus %}	    	
+	      <tr>
+	        <td><a href="/media/{{docs.upload}}">{{ docs.upload }}</a></td>
+	        <td>{{docs.name}}</td>
+	        <td>{{docs.trip}}</td>
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+	  {% else %}
+	  <p>No trucks registered !</p>
+	  {% endif %}
+	</div>
+	    </form>
+ {% endblock %}

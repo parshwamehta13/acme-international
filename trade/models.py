@@ -22,6 +22,20 @@ class Transaction (models.Model):
 	def __str__ (self):
 		return self.transaction_type+" "+str(self.id)
 
+class Goodssearch(models.Model):
+	good_search_item = models.CharField(max_length=300)
+	good_search_by = (('good_type','Good Type'),('good_quantity','Good Quantity'))
+	good_type = models.CharField(max_length=100,choices=good_search_by,default='Good Type')
+	def __str__(self):
+		return str(self.id)
+		
+class Transactionsearch(models.Model):
+	transaction_search_item = models.CharField(max_length=300)
+	transaction_search_by = (('reference_name','Reference Name'),('from_company','Import Company'),('transaction_type','Transaction type'),('goods_type','Goods Type'))
+	transaction_type = models.CharField(max_length=100,choices=transaction_search_by,default='Transaction Type')
+	def __str__(self):
+		return str(self.id)
+
 @python_2_unicode_compatible
 class Document (models.Model):
 	upload = models.FileField(upload_to='uploads/%Y/%m/%d/')
@@ -39,6 +53,3 @@ def update_goods (sender, instance, **kwargs):
 	instance.goods_type.save()
 
 post_save.connect(update_goods, sender=Transaction)
-
-
-

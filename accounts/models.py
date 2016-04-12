@@ -9,13 +9,22 @@ from homepage.models import Employee_Detail
 # Create your models here.
 @python_2_unicode_compatible
 class BankAccount (models.Model):
-	account_number = models.BigIntegerField(unique=True)
-	currency_type_choices = (('Uganda Shilling','Uganda Shilling'),('USD','USD'),('Euro','Euro'),('Kenya Shillings','Kenya Shillings'),('Congolese Franc','Congolese Franc'),('Rwanda Franc',' Rwanda Franc'),('INR','INR'))
-	currency_type = models.CharField(max_length=20,choices=currency_type_choices,default='USD')
+	account_number = models.CharField(max_length=30,unique=True)
+	#currency_type_choices = (('Uganda Shilling','Uganda Shilling'),('USD','USD'),('Euro','Euro'),('Kenya Shillings','Kenya Shillings'),('Congolese Franc','Congolese Franc'),('Rwanda Franc',' Rwanda Franc'),('INR','INR'))
+	#currency_type = models.CharField(max_length=20,choices=currency_type_choices,default='USD')
+	account_holder = models.CharField(max_length=100,default='Company')
+	bank = models.CharField(max_length=100)
 	amount = models.PositiveIntegerField(default=0)	
 
 	def __str__ (self):
 		return str(self.account_number)
+
+class BankAccountssearch(models.Model):
+	account_search_item = models.CharField(max_length=300)
+	account_search_by = (('account_number','Account Number'),('amount','Amount'))
+	account_type = models.CharField(max_length=100,choices=account_search_by,default='Account Number')
+	def __str__(self):
+		return str(self.id)
 
 @python_2_unicode_compatible
 class Transaction (models.Model):

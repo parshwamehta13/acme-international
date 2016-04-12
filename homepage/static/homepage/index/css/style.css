@@ -4,6 +4,7 @@
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
+  background-color: #00796b;
 }
 .form {
   position: relative;
@@ -97,11 +98,8 @@
 
 
 body {
-  background: #f8f8f8; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background-color: #00796b; /* fallback for old browsers */
+ 
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      

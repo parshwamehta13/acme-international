@@ -1,0 +1,84 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	<form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s4">
+        <label for="search_item"> </label>
+    
+    
+    	
+        {{ form.invoice_search_item}} <br>
+        </div>
+    <div class="col s4">
+        <label for="search_item_by"> </label>
+    
+    
+    	
+        {{ form.invoicesearch_type}} <br>
+        </div>
+    	<div class="col s1">
+          <button type="submit" class="save btn btn-default red darken-1">Go</button>
+      </div>
+      <div class="col s1">
+          <a href="{% url 'invoices_admin' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
+      </div>
+          </div>
+		</form>
+	
+	
+	 
+		<div class="row">
+		<h4 class="col s2 headingcolour">Invoice List</h4>  
+		<a  href="{% url 'invoice_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+	</div>
+
+		{% if invoice_list %}
+	  <table class="striped centered bordered responsive-table">	  	
+	    <thead>
+	      <tr>
+	        <th>Number</th>
+	        <th>Date</th>
+	        <th>Invoiced To</th>
+	        <th>Details</th>
+	        <th>Quantoty</th>
+	        <th>Unit Price</th>
+	        <th>Total Price</th>
+	        <th>VAT</th>
+	        
+	        
+	        
+	         
+	        
+	        
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for invoice in invoice_list %}
+	      <tr>
+	        <td>{{invoice.invoice_number}}</td>
+	        <td>{{invoice.date}}</td>
+	        <td>{{invoice.invoiced_to}}</td>
+	        <td>{{invoice.details}}</td>
+	        <td>{{invoice.quantity}}</td>
+	        <td>{{invoice.unit_price}}</td>
+	        <td>{{invoice.total_price}}</td>
+	        <td>{{invoice.vat}}</td>
+	        <td>  <a href="{% url 'invoice_edit' invoice_number=invoice.id %}" class="btn-floating btn-small red">
+      <i class="small material-icons">mode_edit</i>
+    </a></td>
+	       
+	        
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+	    {% else %}
+	  <p>No results !</p>
+	  {% endif %}
+	</div>
+	    </form>
+ {% endblock %}

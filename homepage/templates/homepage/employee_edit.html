@@ -1,0 +1,47 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">New Employee</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s2 offset-s2">
+        <label for="user"> User</label>
+    </div>
+    <div class="col s5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.user}} <br>
+    </div>
+    </div>
+
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="salary"> Salary</label>
+    </div>
+    <div class="col-sm-5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.salary}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="cash in hand"> Cash in hand</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.cash_in_hand}} <br>
+    </div>
+    </div>
+ <div class="center-align">
+        <button type="submit" class="save btn btn-default red darken-1">Save</button>
+    </div>
+    </form>
+ {% endblock %}
+ 

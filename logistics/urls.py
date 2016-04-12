@@ -1,14 +1,15 @@
-from django.conf.urls import include,url
+from django.conf.urls import url
 
 from . import views
 
 urlpatterns = [
-    url(r'add_truck/$', views.add_truck, name='add_truck'),
-    url(r'add_trip/$', views.add_trip, name='add_trip'), 
-    url(r'add_expense/$', views.add_expense, name='add_expense'), 
-    url(r'add_document/$', views.add_document, name='add_document'), 
-    url(r'view_trips/$', views.view_trips, name='view_trips'),
-    url(r'view_trucks/$', views.view_trucks, name='view_trucks'),
-    url(r'view_documents/$', views.view_documents, name='view_documents'),
-    url(r'view_expenses/$', views.view_expenses, name='view_expenses'),
+ 	url(r'^trip/$', views.trips_admin, name='trips_admin'),
+    url(r'^truck/$', views.trucks_admin, name='trucks_admin'),
+    url(r'^truck/(?P<truck_registration_number>\w+)/edittruck/$', views.truck_edit, name='truck_edit'),
+    url(r'^trip/(?P<truck_number>\w+)/edittrip/$', views.trip_edit, name='trip_edit'),
+    url(r'^(?P<docs>\w+)/showdoc/$', views.show_docs, name='show_docs'),
+    url(r'^new/truck/$', views.truck_new, name='truck_new'),
+    url(r'^new/document/$', views.docs_new, name='docs_new'),
+    url(r'^new/trip/$', views.trip_new, name='trip_new'),
+    #url(r'^new/$', views.trip_new, name='trip_new'),
 ]

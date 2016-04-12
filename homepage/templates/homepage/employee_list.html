@@ -1,0 +1,68 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	
+	
+	 <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s4">
+        <label for="search_item"> </label>
+    
+    
+    	
+        {{ form.employee_search_item}} <br>
+        </div>
+    <div class="col s4">
+        <label for="search_item_by"> </label>
+    
+    
+    	
+        {{ form.employeesearch_type}} <br>
+        </div>
+    	<div class="col s1">
+          <button type="submit" class="save btn btn-default red darken-1">Go</button>
+      </div>
+      <div class="col s1">
+          <a href="{% url 'employee_list' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
+      </div>
+          </div>
+		</form>
+		<div class="row">
+		<h4 class="col s3 headingcolour">Employee List</h4>  
+		<a  href="{% url 'employee_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+	</div>
+
+		{% if employees_list %}
+	  <table class="striped centered bordered responsive-table">	  	
+	    <thead>
+	      <tr>
+	        <th>User</th>
+	        <th>Salary</th>
+	        <th>Cash in hand</th>
+	         
+	        
+	        
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for employee in employees_list %}
+	      <tr>
+	        <td>{{employee.user}}</td>
+	        <td>{{employee.salary}}</td>
+	        <td>{{employee.cash_in_hand}}</td>
+	        
+	       
+	        
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+	    {% else %}
+	  <p>No Employee registered !</p>
+	  {% endif %}
+	</div>
+	    </form>
+ {% endblock %}

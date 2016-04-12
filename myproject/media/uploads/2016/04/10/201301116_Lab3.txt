@@ -1,0 +1,65 @@
+
+QUESTION1
+	AREA req, CODE,READONLY
+	ENTRY
+	LDR r0, =0x900
+	LDR r1, =0x2					 
+	LDR r2, =0x3						
+	STMFD r0, {r1-r8}
+	END
+
+QUESTION2
+	AREA cop, CODE, READONLY
+	ENTRY
+	LDR r8, =0x800
+	LDR r1, =0x1
+	LDR r2, =0x2
+	LDR r3, =0x3
+	LDR r4, =0x4
+	STM r8, {r1,r2,r3,r4}				
+	LDM r8, {r5,r6,r7,r8}
+	LDR r9, =0x900
+	STM r9, {r5,r6,r7,r8}
+	END
+
+
+QUESTION-3
+
+	AREA cod, CODE, READONLY
+	ENTRY
+	MRS r0, cpsr
+	MVN r1, #2_11111					
+	AND r0, r1					
+	ORR r0, #2_10					
+	MSR cpsr_c, r0;
+	END
+
+QUESTION-4
+
+	AREA cop, CODE, READONLY
+	ENTRY
+	LDR r0, =label						
+	LDM r0, {r1-r10}
+	LDR r11,= 0x3000
+	STM r11, {r1-r10}
+	MOV r2, r11						
+	LDR r3, [r2]					
+	LDR r5,= 10
+	MOV r6, r3					
+					
+count SUBS r5,r5,#1
+	BEQ finish
+	ADD r2, r2, #4
+	LDR r4, [r2]
+	CMP r6, r4
+	BGT big
+	MOV r6, r4	
+big B count
+
+finish LDR r7, =0x3500
+	STR r6, [r7]
+
+	AREA cop, DATA, READONLY
+
+label DCD 35,47,12,4,55,60,0,8,91,10
+	END

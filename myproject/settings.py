@@ -107,6 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/homepage'
+
 #EMAIL_USE_TLS = True
 # EMAIL_HOST = 'webmail.daiict.ac.in'
 # EMAIL_PORT = 25

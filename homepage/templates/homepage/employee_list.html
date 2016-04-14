@@ -42,8 +42,10 @@
 	        <th>User</th>
 	        <th>Salary</th>
 	        <th>Cash in hand</th>
-	         
 	        
+	        <th>View trip expenses</th>
+	        <th> View/Add employee cashbook </th>
+	        <th></th>
 	        
 	      </tr>
 	    </thead>
@@ -53,6 +55,10 @@
 	        <td>{{employee.user}}</td>
 	        <td>{{employee.salary}}</td>
 	        <td>{{employee.cash_in_hand}}</td>
+	        <td><a href="{% url 'show_emptripexpenses' empid=employee.user.id %}"><i class="material-icons icon-cyan">toll</i></td>
+	        <td><a href="{% url 'show_employeecashbook' empid=employee.id %}"><i class="small material-icons icon-cyan">toll</i></a></td>
+	         <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+
 	        
 	       
 	        

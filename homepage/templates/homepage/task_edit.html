@@ -4,7 +4,7 @@
 {% block content %}
 	<div class="row"></div>
  <div class="row"></div>
- <h4 class="center-align headingcolour">New truck</h4>
+ <h4 class="center-align headingcolour">New task</h4>
  <div class="heading-divider grey lighten-2"> </div>
  <div class="row"></div>
  <div class="row"></div>
@@ -47,13 +47,19 @@
         {{ form.deadline}} <br>
     </div>
     </div>
-    <div class="row extra-bottom-padding">
+     <div class="row extra-bottom-padding">
             <div class="col-sm-2 col-sm-offset-2">
         <label for="status"> Status</label>
     </div>
-    <div class="col-sm-5">
-        {{ form.status}} <br>
-    </div>
+    <div class="switch">
+    <label>
+      False
+      {{ form.status}}
+      <span class="lever"></span>
+      True
+    </label>
+  </div>
+    
     </div>
  <div class="center-align">
         <button type="submit" class="save btn btn-default">Save</button>

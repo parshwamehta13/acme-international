@@ -1,0 +1,54 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	 
+	
+		<div class="row">
+		<h4 class="col s2 headingcolour">Expense List</h4>  
+		<a  href="{% url 'tripexpenses_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+	</div>
+
+		{% if expenses %}
+		
+	  <table class="striped">	  	
+	    <thead>
+	      <tr>
+	        <th>Bill</th>
+	        <th>Amount</th>
+	        <th>Reason</th>
+	        <th>Trip</th>
+	        <th>Employee</th>
+	        
+	        
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for expense in expenses %}
+	    	
+	      <tr>
+	        <td><a href="/media/{{expense.bill}}">{{expense.bill }}</a></td>
+	        <td>{{expense.amount}}</td>
+	        <td>{{expense.reason}}</td>
+	        <td>{{expense.trip}}</td>
+	        <td>{{expense.employee.user}}</td>
+	        
+	        <td>  <a href="{% url 'tripexpenses_edit' expenseid=expense.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
+	        
+	        
+
+	        
+	       
+	        
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+	  {% else %}
+	  <p>No results !</p>
+	  {% endif %}
+	</div>
+	    </form>
+ {% endblock %}

@@ -36,7 +36,7 @@
 	        <th>Registeration number</th>
 	        <th>Driver</th>
 	        <th>Truck Type</th>
-	        <th></th>
+	       
 	        
 	      </tr>
 	    </thead>
@@ -47,7 +47,9 @@
 	        <td>{{truck.truck_registration_number}}</td>
 	        <td>{{truck.truck_driver}}</td>
 	        <td>{{truck.truck_type}}</td>
-    </a></td>
+	        
+    <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+
 
 	        
 	       

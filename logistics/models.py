@@ -6,16 +6,16 @@ from homepage.models import Employee_Detail
 from django.db.models.signals import post_save
 # Create your models here.
 class Truck (models.Model):
-	truck_registration_number = models.CharField(max_length=20,primary_key=True)
+	truck_registration_number = models.CharField(max_length=20,unique=True)
 	truck_driver = models.CharField(max_length=50)
 	truck_type_choices = (('Semi-trailer','SEMI-TRAILER'),('Trailer','TRAILER'),('Box-Body','BOX-BODY'))
 	truck_type = models.CharField(max_length=20,choices=truck_type_choices,default='TRAILER')
 	
 	def __str__(self):
-		return self.truck_registration_number
+		return self.truck_registration_number+" "+str(self.id)
 
 class Trip (models.Model):
-	truck_registration_number = models.ForeignKey(Truck,on_delete=models.CASCADE)
+	truck_registration_number = models.ForeignKey(Truck)
 	trip_source = models.CharField(max_length=50,blank=True)
 	trip_destination = models.CharField(max_length=50,blank=True)
 	trip_distance = models.IntegerField(blank=True)
@@ -42,7 +42,7 @@ class Expense (models.Model):
 	bill = models.FileField(upload_to='uploads/expense/%Y/%m/%d/',blank=True)
 	amount = models.IntegerField(blank=True)
 	reason = models.TextField(blank=True)
-	trip = models.ForeignKey(Trip,on_delete=models.CASCADE)
+	trip = models.ForeignKey(Trip)
 	employee = models.ForeignKey(Employee_Detail,default=2)
 
 	def __str__(self):

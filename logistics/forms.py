@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Truck,Trip,Tripsearch,Trucksearch,Document
+from .models import Truck,Trip,Tripsearch,Trucksearch,Document,Expense
 
 class TruckForm(forms.ModelForm):
 
@@ -37,6 +37,13 @@ class TripSearchForm(forms.ModelForm):
     class Meta:
         model = Tripsearch
         fields = ('trip_search_item', 'trip_type',)
+
+class ExpenseForm(forms.ModelForm):
+
+    class Meta:
+        model = Expense
+        fields = ('bill', 'amount','reason','trip','employee',)
+    
 
 
 

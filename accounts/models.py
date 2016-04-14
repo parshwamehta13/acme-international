@@ -51,7 +51,7 @@ class EmployeeCashBook (models.Model):
 	transaction_details = models.TextField()
 
 	def __str__(self):
-		return str(self.employee_number.user.username)+" "+str(self.amount_added)
+		return str(self.employee_number.user.username)+" "+str(self.amount_added)+" "+str(self.id)
 
 def update_amount (sender, instance, **kwargs):
 	if instance.transaction_type == 'Debit':

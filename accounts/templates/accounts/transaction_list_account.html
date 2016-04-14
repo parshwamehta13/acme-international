@@ -1,0 +1,57 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+	 
+	
+		<div class="row">
+		<h4 class="col s3 headingcolour">Transaction List</h4>  
+		<a  href="{% url 'accounts.views.transaction_new_account' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+	</div>
+
+		{% if trans_list %}
+		
+	  <table class="striped">	  	
+	    <thead>
+	      <tr>
+	        <th>Account number</th>
+	        
+	        <th>Transaction date</th>
+	        <th>Transaction details</th>
+	        <th>Transaction type</th>
+	        <th>Transaction amount</th>
+	        
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	{% for trans in trans_list %}
+	    	
+	      <tr>
+	        <td>{{trans.account_number}}</td>
+	        <td>{{trans.transaction_date}}</td>
+	        <td>{{trans.transaction_details}}</td>
+	        <td>{{trans.transaction_type}}</td>
+	        <td>{{trans.transaction_amount}}</td>
+
+	       
+	        
+	       
+	        
+	      </tr>
+	      {% endfor %}
+	    </tbody>
+	  </table>
+	  {% else %}
+	  <p>No Results!</p>
+	  {% endif %}
+	</div>
+	    </form>
+ {% endblock %}
+ <script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+
+    </script>

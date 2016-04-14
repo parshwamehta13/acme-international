@@ -70,6 +70,7 @@
 	        <td>  <a href="{% url 'receipt_edit' receipt_number=receipt.id %}" class="btn-floating btn-small red">
       <i class="small material-icons">mode_edit</i>
     </a></td>
+    <td><a href="{% url 'delete_receipt' did=receipt.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
 	       
 	        
 	      </tr>

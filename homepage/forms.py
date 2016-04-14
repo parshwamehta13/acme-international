@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Employee_Detail,Employeesearch,Task
+from .models import Employee_Detail,Employeesearch,Task,Tasksearch
+from accounts.models import EmployeeCashBook
 
 class EmployeeForm(forms.ModelForm):
 
@@ -22,3 +23,14 @@ class EmployeeSearchForm(forms.ModelForm):
         model = Employeesearch
         fields = ('employee_search_item', 'employeesearch_type',)
 
+class TaskSearchForm(forms.ModelForm):
+
+    class Meta:
+        model = Tasksearch
+        fields = ('task_search_item', 'tasksearch_type',)
+
+class CashbookForm(forms.ModelForm):
+
+    class Meta:
+        model = EmployeeCashBook
+        fields = ('employee_number', 'account_number','amount_added','transaction_date','transaction_details',)

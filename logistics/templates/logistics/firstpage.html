@@ -2,7 +2,7 @@
 <html>
 {% load staticfiles %}
 <head>
-  <title>Homepage</title>
+  <title>{{title}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -19,39 +19,104 @@
 </head>
 <body>
   <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a href="{% url 'retail.views.receipts_admin' %}">Receipts</a></li>
-    <li class="divider"></li>
-    <li><a href="{% url 'retail.views.invoices_admin' %}">Invoices</a></li>
-    
-  </ul>
+  
   <nav>
-    <div class="nav-wrapper teal lighten-1">
-      <a href="#!" class="brand-logo">Acme International</a>
+    <div class="nav-wrapper shiftup teal lighten-1">
+     
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="{% url 'logistics.views.trips_admin' %}">Logistics</a></li>
-        <li><a href="{% url 'homepage.views.task_management' %}">Task Management</a></li>
-        <li><a href="{% url 'accounts.views.accounts_admin' %}">Accounts</a></li>
-        <li><a href="{% url 'trade.views.transactions_admin' %}">Trade</a></li>
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Retail<i class="material-icons right">arrow_drop_down</i></a></li>
+      <ul class="hide-on-med-and-down">
+        <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle whitetext col s2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+             Logistics <span class="caret"></span>
+             </a>
+          <ul class="dropdown-menu">
+              <li> <a href="{% url 'logistics.views.trucks_admin' %}"> Trucks </a> </li>
+              <li> <a href="{% url 'logistics.views.trips_admin' %}">Trips </a></li>
+              <li> <a href="{% url 'logistics.views.show_tripexpenses_all' %}">Expenses </a></li>
+           </ul>
+      </li>
+
+ <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle whitetext col s2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+             Accounts and Cashbooks <span class="caret"></span>
+             </a>
+          <ul class="dropdown-menu">
+              <li><a href="{% url 'accounts.views.accounts_admin' %}">Accounts</a></li>
+              <li> <a href="{% url 'accounts.views.show_employeecashbook_all' %}">Cashbooks </a></li>
+              
+           </ul>
+      </li>
+
+  <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+             Trade <span class="caret"></span>
+             </a>
+          <ul class="dropdown-menu">
+              <li> <a href="{% url 'trade.views.goods_admin' %}"> Goods </a> </li>
+              <li> <a href="{% url 'trade.views.transactions_admin' %}"> Transaction </li>
+           </ul>
+      </li>
+        
+        
+         <li class="dropdown">
+        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+             Retail <span class="caret"></span>
+             </a>
+          <ul class="dropdown-menu">
+              <li> <a href="{% url 'retail.views.receipts_admin' %}"> Receipts </a> </li>
+              <li> <a href="{% url 'retail.views.invoices_admin' %"}> Invoice </a></li>
+              
+            </ul>
+      </li>
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+             Employee Management <span class="caret"></span>
+             </a>
+          <ul class="dropdown-menu">
+              
+              <li> <a href="{% url 'homepage.views.employee_list' %"}> Manage Employees </a></li>
+              <li> <a href="{% url 'homepage.views.task_management' %}">Manage task </a></li>
+            </ul>
+      </li>
       </ul>
+      
+      <div class="container-fluid right-align">
+      
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'logout_user' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+    </div>
+   
       <ul class="side-nav" id="mobile-demo">
         <li><a href="{% url 'logistics.views.trips_admin' %}">Logistics</a></li>
             
         <li><a href="{% url 'homepage.views.task_management' %}">Task Management</a></li>
         <li><a href="{% url 'accounts.views.accounts_admin' %}">Accounts</a></li>
         <li><a href="{% url 'trade.views.transactions_admin' %}">Trade</a></li>
-        <li>
-          <a class="dropdown-button" href="#!" data-activates="dropdown1">Retail<i class="material-icons right">arrow_drop_down</i></a>
-        </li>
+        
+          <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+             Retail <span class="caret"></span>
+             </a>
+          <ul class="dropdown-menu">
+              <li> <a href="{% url 'retail.views.receipts_admin' %}"> Receipts </a> </li>
+              <li> <a href="{% url 'retail.views.invoices_admin' %"}> Invoice </a></li>
+              
+            </ul>
+      </li>
+        
       </ul>
     </div>
   </nav>
 </div>
 
   <div class="section">
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    
   {% block content %}
 {% endblock %}
 </div>

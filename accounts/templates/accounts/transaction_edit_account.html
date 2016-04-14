@@ -1,0 +1,69 @@
+{% extends 'logistics/firstpage.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">New Account</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row extra-bottom-padding">
+
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver">Account Number</label>
+    </div>
+    <div class="col s5">
+        <i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.account_number}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver">Transaction date</label>
+    </div>
+    <div class="col s5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.transaction_date}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Transaction details</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.transaction_details}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Transaction type</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.transaction_type}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Transaction amount</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.transaction_amount}} <br>
+    </div>
+    </div>
+ <div class="center-align">
+        <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+    </form>
+ {% endblock %}
+    <script type="text/javascript">
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+
+    </script>
+   

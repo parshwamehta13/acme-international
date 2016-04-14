@@ -30,9 +30,9 @@
              Logistics <span class="caret"></span>
              </a>
           <ul class="dropdown-menu">
-              <li> <a href="{% url 'logistics.views.trucks_admin' %}"> Trucks </a> </li>
-              <li> <a href="{% url 'logistics.views.trips_admin' %}">Trips </a></li>
               <li> <a href="{% url 'logistics.views.show_tripexpenses_all' %}">Expenses </a></li>
+              <li> <a href="{% url 'logistics.views.trips_admin' %}"> Trips </a></li>
+              <li> <a href="{% url 'logistics.views.trucks_admin' %}"> Trucks </a></li>
            </ul>
       </li>
 
@@ -64,7 +64,7 @@
              </a>
           <ul class="dropdown-menu">
               <li> <a href="{% url 'retail.views.receipts_admin' %}"> Receipts </a> </li>
-              <li> <a href="{% url 'retail.views.invoices_admin' %"}> Invoice </a></li>
+              <li> <a href="{% url 'retail.views.invoices_admin' %}"> Invoice </a></li>
               
             </ul>
       </li>
@@ -74,8 +74,9 @@
              </a>
           <ul class="dropdown-menu">
               
-              <li> <a href="{% url 'homepage.views.employee_list' %"}> Manage Employees </a></li>
+              <li> <a href="{% url 'homepage.views.employee_list' %}"> Manage Employees </a></li>
               <li> <a href="{% url 'homepage.views.task_management' %}">Manage task </a></li>
+              <li> <a href="{% url 'homepage.views.add_employee' %}">Add Employee </a></li>
             </ul>
       </li>
       </ul>

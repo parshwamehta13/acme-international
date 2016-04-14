@@ -63,7 +63,7 @@ def add_employee(request):
             employee_detail.save()
             return redirect(employee_list)
         else:
-            return render (request,'homepage/add_employee.html')
+            return render (request,'homepage/add_employee.html',{'title':"Add Employee"})
     else:
         return redirect(index)
 

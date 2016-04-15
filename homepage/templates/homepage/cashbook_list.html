@@ -1,47 +1,41 @@
 {% extends 'logistics/firstpage.html' %}
-
-
 {% block content %}
-
-<div class="container-fluid">	
-	<div class="row">
-		<h4 class="col l2 s12 headingcolour">Cashbook List</h4>  
-		<a  href="{% url 'cashbook_new' %}" class="btn-floating btn-large waves-effect waves-light teal darken-1"><i class="material-icons">add</i></a>
-		
-	</div>
-	
-		{% if cashbook %}
-	  <table class="striped centered bordered responsive-table">	  	
-	    <thead>
-	      <tr>
-	      	<th>Employee number</th>
-	        <th>Account number</th>
-	        <th>Amount added </th>
-	        <th>Transaction Date</th>
-	        <th>Transaction Details</th>
-	        
-	        <th></th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	    	{% for cash in cashbook %}
-	      <tr>
-	      	<td>{{cash.employee_number}}</td>
-	        <td>{{cash.account_number}}</td>
-	        <td>{{cash.amount_added}}</td>
-	        <td>{{cash.transaction_date}}</td>
-	        <td>{{cash.transaction_details}}</td>	        
-	        
-	       
-	         
-	      	<td>  <a href="{% url 'cashbook_edit' cashbookid=cash.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
-    		</td>	        
-	      </tr>
-	      {% endfor %}
-	    </tbody>
-	  </table>
-	    {% else %}
-	  <p>No Results !</p>
-	  {% endif %}
-	</div>
+<div class="fixed-action-btn" style="top: 60px; right: 24px;">
+    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'cashbook_new' %}"><i class="material-icons left">add</i>Add Cashbook</a>
+    </a>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="center-align headingcolour">Cashbook List</h4>
+    </div>
+    {% if cashbook %}
+    <table class="striped centered bordered responsive-table">
+        <thead>
+            <tr>
+                <th>Employee number</th>
+                <th>Account number</th>
+                <th>Amount added </th>
+                <th>Transaction Date</th>
+                <th>Transaction Details</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cash in cashbook %}
+            <tr>
+                <td>{{cash.employee_number}}</td>
+                <td>{{cash.account_number}}</td>
+                <td>{{cash.amount_added}}</td>
+                <td>{{cash.transaction_date}}</td>
+                <td>{{cash.transaction_details}}</td>
+                <td>  <a href="{% url 'cashbook_edit' cashbookid=cash.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No Results !</p>
+    {% endif %}
+</div>
 {% endblock %}

@@ -7,8 +7,6 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
-
 def accounts_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
     	if request.method == "POST":
@@ -36,7 +34,6 @@ def account_new(request):
             form = BankAccountForm(request.POST)
             if form.is_valid():
                account = form.save(commit=True)
-               account.save()
                return redirect(accounts_admin)
         else:
             form = BankAccountForm()
@@ -54,8 +51,6 @@ def account_edit(request, account_number):
             form = BankAccountForm(request.POST, instance=account)
             if form.is_valid():
                 account = form.save(commit=True)
-                
-                account.save()
                 return redirect('accounts_admin')
         else:
             form = BankAccountForm(instance=account)
@@ -79,7 +74,6 @@ def transaction_new(request):
             form = TransactionForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=True)
-                post.save()
                 return redirect(accounts_admin)
         else:
             form = TransactionForm()
@@ -100,7 +94,6 @@ def cashbook_new_all(request):
             form = CashbookForm(request.POST)
             if form.is_valid():            
                 post = form.save(commit=True)
-                post.save()
                 return redirect('show_employeecashbook_all')
         else:
             form = CashbookForm()
@@ -111,16 +104,12 @@ def cashbook_new_all(request):
 
 def cashbook_edit_all(request, cashbookid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
-        cashbook = EmployeeCashBook.objects.get(id=cashbookid)
-            
+        cashbook = EmployeeCashBook.objects.get(id=cashbookid)            
         if request.method == "POST":
             form = CashbookForm(request.POST, instance=cashbook)
             if form.is_valid():
                 cash = form.save(commit=True)
-                
-                cash.save()
-                return redirect('show_employeecashbook_all')
-                
+                return redirect('show_employeecashbook_all')                
         else:
             form = CashbookForm(instance=cashbook)
         return render(request, 'accounts/cashbook_edit_all.html', {'form': form,'title':'Edit CashBook'})

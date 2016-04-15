@@ -1,115 +1,106 @@
 <!DOCTYPE html>
 <html>
-{% load staticfiles %}
-<head>
-  <title>Homepage</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection" />
+    {% load staticfiles %}
+    <head>
+        <title>Homepage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" media="screen,projection" />
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-<!-- <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script> -->
-</head>
-<body>
-  <nav class="navbar navbar-default grey lighten-5">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="{% url 'homepage.views.visithome' %}">Acme International</a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="{% url 'logout_user' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    </ul>
-    </div>
-
-  </nav>
-
-  
-  <div class="navbar shiftup ">
-    <nav>
-      <div class="nav-wrapper teal lighten-1">
-      
-      <ul class="left ">
-       <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-             Logistics <span class="caret"></span>
-             </a>
-          <ul class="dropdown-menu">
-              <li> <a href="{% url 'logistics.views.trucks_admin' %}"> Trucks </a> </li>
-              <li> <a href="{% url 'logistics.views.trips_admin' %}">Trips </a></li>
-           </ul>
-      </li>
-
-       <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-             Trade <span class="caret"></span>
-             </a>
-          <ul class="dropdown-menu">
-              <li> <a href="{% url 'trade.views.goods_admin' %}"> Goods </a> </li>
-              <li> <a href="{% url 'trade.views.transactions_admin' %}"> Transaction </li>
-           </ul>
-      </li>
-       
-       <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-             Accounts <span class="caret"></span>
-             </a>
-          <ul class="dropdown-menu">
-              <li> <a href="{% url 'accounts.views.accounts_admin' %}"> Accounts </a> </li>
-              <li> Employee Cash </li>
-              <li> Transactions </li>
-           </ul>
-      </li>
-      <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-             Employee Management <span class="caret"></span>
-             </a>
-          <ul class="dropdown-menu">
-              <li> <a href="{% url 'homepage.views.add_user' %}"> Create User </a> </li>
-              <li> <a href="{% url 'homepage.views.employee_list' %}"> Create User </a> </li>
-              <li> <a href="{% url 'homepage.views.task_management' %}">Manage task </a></li>
-            </ul>
-      </li>
-      <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-             Retail <span class="caret"></span>
-             </a>
-          <ul class="dropdown-menu">
-              <li> <a href="{% url 'retail.views.receipts_admin' %}"> Receipts </a> </li>
-              <li> <a href="{% url 'retail.views.invoices_admin' %"}> Invoice </a></li>
-              
-            </ul>
-      </li>
-      <li role="presentation" class="dropdown">
-        
-      </li>
-      
-      
-      
-    </ul>
-    </div>
-  </nav>
-</div>
-
-  <div class="section">
-  {% block content %}
-{% endblock %}
-</div>
-</body>
-<html>
-   <script type="text/javascript">
- $(document).ready(function() {
-    $('select').material_select();
-  });
- $('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-  });
-
-    </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <!-- <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script> -->
+    </head>
+    <body>
+        <nav class="navbar navbar-default grey lighten-5">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'homepage.views.visithome' %}">Acme International</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'logout_user' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="navbar shiftup ">
+            <nav>
+                <div class="nav-wrapper teal lighten-1">
+                    <ul class="left ">
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Logistics <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="{% url 'logistics.views.trucks_admin' %}"> Trucks </a> </li>
+                                <li> <a href="{% url 'logistics.views.trips_admin' %}">Trips </a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Trade <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="{% url 'trade.views.goods_admin' %}"> Goods </a> </li>
+                                <li>
+                                    <a href="{% url 'trade.views.transactions_admin' %}">
+                                        Transaction 
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Accounts <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li> <a href="{% url 'accounts.views.accounts_admin' %}"> Accounts </a> </li>
+                        <li> Employee Cash </li>
+                        <li> Transactions </li>
+                        </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Employee Management <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="{% url 'homepage.views.add_user' %}"> Create User </a> </li>
+                                <li> <a href="{% url 'homepage.views.employee_list' %}"> Create User </a> </li>
+                                <li> <a href="{% url 'homepage.views.task_management' %}">Manage task </a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle whitetext" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Retail <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="{% url 'retail.views.receipts_admin' %}"> Receipts </a> </li>
+                                <li> <a href="{% url 'retail.views.invoices_admin' %"}> Invoice </a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="section">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+    <html>
+        <script type="text/javascript">
+            $(document).ready(function() {
+               $('select').material_select();
+             });
+            $('.datepicker').pickadate({
+               selectMonths: true, // Creates a dropdown to control month
+               selectYears: 15 // Creates a dropdown of 15 years to control year
+             });
+            
+               
+        </script>

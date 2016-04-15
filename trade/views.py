@@ -9,21 +9,17 @@ def goods_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
             form = GoodSearchForm(request.POST)
-
             if form.is_valid():
                 searchitem = form.cleaned_data['good_search_item']
                 goodtype = form.cleaned_data['good_type']+"__icontains"
                 good_list = Good.objects.filter(**{goodtype: searchitem})
                 return render(request, 'trade/good_list.html', {'good_list': good_list,'form': form,'title':"Goods Admin"})
             else:
-
                 good_list = Good.objects.all()
-
                 form = GoodSearchForm()
                 return render(request, 'trade/good_list.html', {'good_list': good_list,'form': form,'title':"Goods Admin"})
         else:
             good_list = Good.objects.all()
-
             form = GoodSearchForm()
         return render(request, 'trade/good_list.html', {'good_list': good_list,'form': form,'title':"Goods Admin"})
     else:
@@ -36,9 +32,6 @@ def good_new(request):
             form = GoodForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                post.save()
                 return redirect(goods_admin)
         else:
             form = GoodForm()
@@ -52,16 +45,12 @@ def good_new(request):
 def good_edit(request, goodid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         good = Good.objects.get(id=goodid)
-        print(good.id)
-        
+        print(good.id)        
         if request.method == "POST":
             form = GoodForm(request.POST, instance=good)
             if form.is_valid():
                 good = form.save(commit=True)
-                
-                good.save()
-                return redirect('goods_admin')
-                
+                return redirect('goods_admin')                
         else:
             form = GoodForm(instance=good)
         return render(request, 'trade/good_edit.html', {'form': form, 'title':"Edit Good"})
@@ -73,7 +62,6 @@ def transactions_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
             form = TransactionSearchForm(request.POST)
-
             if form.is_valid():
                 searchitem = form.cleaned_data['transaction_search_item']
                 transactiontype = form.cleaned_data['transaction_type']+"__icontains"
@@ -86,7 +74,6 @@ def transactions_admin(request):
                 return render(request, 'trade/transaction_list.html', {'transaction_list': transaction_list,'form': form,'title':"Goods Transaction"})
         else:
             transaction_list = Transaction.objects.all()
-
             form = TransactionSearchForm()
         return render(request, 'trade/transaction_list.html', {'transaction_list': transaction_list,'form': form,'title':"Goods Transaction"})
     else:
@@ -99,17 +86,12 @@ def transaction_new(request):
             form = TransactionForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                post.save()
                 return redirect(transactions_admin)
         else:
             form = TransactionForm()
         return render(request, 'trade/transaction_edit.html', {'form': form,'title':"Add Trade"})
     else:
         return redirect(index)
-
-
 
 def transaction_edit(request, transid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
@@ -146,9 +128,6 @@ def docs_new_t(request):
             form = DocsForm(request.POST,request.FILES)
             if form.is_valid():
                 post = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                post.save()
                 return redirect(transactions_admin)
         else:
             form = DocsForm()

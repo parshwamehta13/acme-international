@@ -13,12 +13,8 @@ def receipts_admin(request):
             if form.is_valid():
                 searchitemreceipt = form.cleaned_data['receipt_search_item']
                 receipttype = form.cleaned_data['receiptsearch_type']+"__icontains"
-                #search_type = 'icontains'
-                #receipttype = receipttype + "__" + search_type
                 receipt_list = Receipt.objects.filter(**{receipttype: searchitemreceipt})
                 return render(request, 'retail/receipts_list.html', {'receipt_list': receipt_list,'form': form,'title':'Receipt Admin'})            
-            #else:
-                #receipt_list = Receipt.objects.all()
         else:
             receipt_list = Receipt.objects.all()
             form = ReceiptSearchForm()
@@ -33,9 +29,6 @@ def receipt_new(request):
             form = ReceiptForm(request.POST)
             if form.is_valid():
                 receipt = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                receipt.save()
                 return redirect(receipts_admin)
         else:
             form = ReceiptForm()
@@ -45,14 +38,11 @@ def receipt_new(request):
            
 def receipt_edit(request, receipt_number):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
-        receipt = get_object_or_404(Receipt, id=receipt_number)
-       
+        receipt = get_object_or_404(Receipt, id=receipt_number)       
         if request.method == "POST":
             form = ReceiptForm(request.POST, instance=receipt)
             if form.is_valid():
                 receipt = form.save(commit=True)
-                
-                receipt.save()
                 return redirect('receipts_admin')
         else:
             form = ReceiptForm(instance=receipt)
@@ -67,8 +57,6 @@ def invoices_admin(request):
             if form.is_valid():
                 searchiteminvoice = form.cleaned_data['invoice_search_item']
                 invoicetype = form.cleaned_data['invoicesearch_type']+"__icontains"
-                #search_type = 'icontains'
-                #invoicetype = receipttype + "__" + search_type
                 invoice_list = Invoice.objects.filter(**{invoicetype: searchiteminvoice})
                 return render(request, 'retail/invoices_list.html', {'invoice_list': invoice_list,'form': form,'title':'Invoice Admin'})
             else:
@@ -87,9 +75,6 @@ def invoice_new(request):
             form = InvoiceForm(request.POST)
             if form.is_valid():
                 invoice = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                invoice.save()
                 return redirect(invoices_admin)
         else:
             form = InvoiceForm()
@@ -105,8 +90,6 @@ def invoice_edit(request, invoice_number):
             form = InvoiceForm(request.POST, instance=invoice)
             if form.is_valid():
                 invoice = form.save(commit=True)
-                
-                invoice.save()
                 return redirect('invoices_admin')
         else:
             form = InvoiceForm(instance=invoice)

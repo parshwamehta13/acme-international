@@ -1,51 +1,46 @@
 {% extends 'logistics/firstpage.html' %}
-
-
 {% block content %}
-
+<div class="fixed-action-btn" style="top: 60px; right: 24px;">
+    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'account_transaction_new' %}"><i class="material-icons left">add</i>Add Transaction</a>
+    </a>
+</div>
 <div class="container-fluid">
-	 
-	
-		<div class="row">
-		<h4 class="col l12 s12 headingcolour">Account - {{account_no}}</h4>  
-		<h4 class="col l3 s12 headingcolour">Transaction List</h4>
-		<a  href="{% url 'account_transaction_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
-	</div>
-
-		{% if trans_list %}
-		
-	  <table class="striped centered bordered responsive-table">	  	
-	    <thead>
-	      <tr>
-	        <th>Account number</th>	        
-	        <th>Transaction date</th>
-	        <th>Transaction details</th>
-	        <th>Transaction type</th>
-	        <th>Transaction amount</th>
-	        
-	      </tr>
-	    </thead>
-	    <tbody>
-	    	{% for trans in trans_list %}	    	
-	      <tr>
-	        <td>{{trans.account_number}}</td>
-	        <td>{{trans.transaction_date}}</td>
-	        <td>{{trans.transaction_details}}</td>
-	        <td>{{trans.transaction_type}}</td>
-	        <td>{{trans.transaction_amount}}</td>	        
-	      </tr>
-	      {% endfor %}
-	    </tbody>
-	  </table>
-	  {% else %}
-	  <p>No Transaction in this account !</p>
-	  {% endif %}
-	</div>
-	    </form>
- {% endblock %}
- <script type="text/javascript">
- $(document).ready(function() {
-    $('select').material_select();
-  });
-
-    </script>
+    <div class="row">
+        <h4 class="center-align headingcolour">Account Transaction-{{account_no}}</h4>
+    </div>
+    {% if trans_list %}
+    <table class="striped centered bordered responsive-table">
+        <thead>
+            <tr>
+                <th>Account number</th>
+                <th>Transaction date</th>
+                <th>Transaction details</th>
+                <th>Transaction type</th>
+                <th>Transaction amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trans in trans_list %}	    	
+            <tr>
+                <td>{{trans.account_number}}</td>
+                <td>{{trans.transaction_date}}</td>
+                <td>{{trans.transaction_details}}</td>
+                <td>{{trans.transaction_type}}</td>
+                <td>{{trans.transaction_amount}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No Transaction in this account !</p>
+    {% endif %}
+</div>
+</form>
+{% endblock %}
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('select').material_select();
+     });
+    
+       
+</script>

@@ -1,74 +1,63 @@
 {% extends 'logistics/firstpage.html' %}
-
-
 {% block content %}
-
+<div class="fixed-action-btn" style="top: 60px; right: 24px;">
+    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'add_employee' %}"><i class="material-icons left">add</i>Add Employee</a>
+    </a>
+</div>
 <div class="container-fluid">
-	
-	
-	 <form method="POST" class="post-form">{% csrf_token %}
-    	<div class="row">
-    		<div class="col s4">
-        <label for="search_item"> </label>
-    
-    
-    	
-        {{ form.employee_search_item}} <br>
+    <div class="row">
+        <h4 class="center-align headingcolour">Employee List</h4>
+    </div>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col l4 s6">
+                <label for="search_item"> </label>
+                {{ form.employee_search_item}} <br>
+            </div>
+            <div class="col l2 s6">
+                <label for="search_item_by"> </label>
+                {{ form.employeesearch_type}} <br>
+            </div>
+            <div class="col l1 s6">
+                <button type="submit" class="save btn btn-default red darken-1">Go</button>
+            </div>
+            <div class="col l1 s6">
+                <a href="{% url 'employee_list' %}" class="waves-effect waves-light btn teal darken-1">Clear</a>
+            </div>
         </div>
-    <div class="col s4">
-        <label for="search_item_by"> </label>
-    
-    
-    	
-        {{ form.employeesearch_type}} <br>
-        </div>
-    	<div class="col s1">
-          <button type="submit" class="save btn btn-default red darken-1">Go</button>
-      </div>
-      <div class="col s1">
-          <a href="{% url 'employee_list' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
-      </div>
-          </div>
-		</form>
-		<div class="row">
-		<h4 class="col s3 headingcolour">Employee List</h4>  
-		<a  href="{% url 'employee_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
-	</div>
-
-		{% if employees_list %}
-	  <table class="striped centered bordered responsive-table">	  	
-	    <thead>
-	      <tr>
-	        <th>User</th>
-	        <th>Salary</th>
-	        <th>Cash in hand</th>
-	        
-	        <th>View trip expenses</th>
-	        <th> View/Add employee cashbook </th>
-	        <th></th>
-	        
-	      </tr>
-	    </thead>
-	    <tbody>
-	    	{% for employee in employees_list %}
-	      <tr>
-	        <td>{{employee.user}}</td>
-	        <td>{{employee.salary}}</td>
-	        <td>{{employee.cash_in_hand}}</td>
-	        <td><a href="{% url 'show_emptripexpenses' empid=employee.user.id %}"><i class="material-icons icon-cyan">toll</i></td>
-	        <td><a href="{% url 'show_employeecashbook' empid=employee.id %}"><i class="small material-icons icon-cyan">toll</i></a></td>
-	         <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
-
-	        
-	       
-	        
-	      </tr>
-	      {% endfor %}
-	    </tbody>
-	  </table>
-	    {% else %}
-	  <p>No Employee registered !</p>
-	  {% endif %}
-	</div>
-	    </form>
- {% endblock %}
+    </form>
+    {% if employees_list %}
+    <table class="striped centered bordered responsive-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Salary</th>
+                <th>Cash in hand</th>
+                <th>View trip expenses</th>
+                <th> View/Add employee cashbook </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees_list %}
+            <tr>
+                <td>{{employee.user}}</td>
+                <td>{{employee.salary}}</td>
+                <td>{{employee.cash_in_hand}}</td>
+                <td>
+                    <a href="{% url 'show_emptripexpenses' empid=employee.user.id %}">
+                        <i class="material-icons icon-cyan">shopping_cart</i>
+                </td>
+                <td><a href="{% url 'show_employeecashbook' empid=employee.id %}"><i class="small material-icons icon-cyan">description</i></a></td>
+                <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No Employee registered !</p>
+    {% endif %}
+</div>
+</form>
+{% endblock %}

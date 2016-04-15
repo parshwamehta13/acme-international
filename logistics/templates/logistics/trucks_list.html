@@ -1,66 +1,54 @@
 {% extends 'logistics/firstpage.html' %}
-
-
 {% block content %}
-
+<div class="fixed-action-btn" style="top: 60px; right: 24px;">
+   <a class="waves-effect waves-light btn grey darken-1" href="{% url 'truck_new' %}"><i class="material-icons left">add</i>Add Truck</a>
+   </a>
+</div>
 <div class="container-fluid">
-	<div class="row">
-		<h4 class="col l2 s12 headingcolour">Truck List</h4>  
-		<a  href="{% url 'truck_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
-	</div>
-	 <form method="POST" class="post-form">{% csrf_token %}
-    	<div class="row">
-    		<div class="col l4 s6">
-        <label for="search_item"> </label>    	
-        {{ form.truck_search_item}} <br>
-        </div>
-    <div class="col l2 s6">
-        <label for="search_item_by"> </label>    	
-        {{ form.truck_type}} <br>
-        </div>
-    	<div class="col l1 s6">
-          <button type="submit" class="save btn btn-default red darken-1">Go</button>
+   <div class="row">
+        <h4 class="center-align headingcolour">Trucks List</h4>
+    </div>
+   <form method="POST" class="post-form">
+      {% csrf_token %}
+      <div class="row">
+         <div class="col l4 s6">
+            <label for="search_item"> </label>    	
+            {{ form.truck_search_item}} <br>
+         </div>
+         <div class="col l2 s6">
+            <label for="search_item_by"> </label>    	
+            {{ form.truck_type}} <br>
+         </div>
+         <div class="col l1 s6">
+            <button type="submit" class="save btn btn-default red darken-1">Go</button>
+         </div>
+         <div class="col l1 s6">
+            <a href="{% url 'trucks_admin' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
+         </div>
       </div>
-      <div class="col l1 s6">
-          <a href="{% url 'trucks_admin' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
-      </div>
-          </div>
-	
-		
-
-		{% if truck_list %}
-		
-	  <table class="striped centered bordered responsive-table">	  	
-	    <thead>
-	      <tr>
-	        <th>Registeration number</th>
-	        <th>Driver</th>
-	        <th>Truck Type</th>
-	       
-	        
-	      </tr>
-	    </thead>
-	    <tbody>
-	    	{% for truck in truck_list %}
-	    	
-	      <tr>
-	        <td>{{truck.truck_registration_number}}</td>
-	        <td>{{truck.truck_driver}}</td>
-	        <td>{{truck.truck_type}}</td>
-	        
-    <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
-
-
-	        
-	       
-	        
-	      </tr>
-	      {% endfor %}
-	    </tbody>
-	  </table>
-	  {% else %}
-	  <p>No trucks registered !</p>
-	  {% endif %}
-	</div>
-	    </form>
- {% endblock %}
+      {% if truck_list %}
+      <table class="striped centered bordered responsive-table">
+         <thead>
+            <tr>
+               <th>Registeration number</th>
+               <th>Driver</th>
+               <th>Truck Type</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for truck in truck_list %}
+            <tr>
+               <td>{{truck.truck_registration_number}}</td>
+               <td>{{truck.truck_driver}}</td>
+               <td>{{truck.truck_type}}</td>
+               <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      {% else %}
+      <p>No trucks registered !</p>
+      {% endif %}
+</div>
+</form>
+{% endblock %}

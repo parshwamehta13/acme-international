@@ -1,13 +1,14 @@
 from __future__ import unicode_literals
 import datetime
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
 from homepage.models import Employee_Detail
 from django.db.models.signals import post_save
 # Create your models here.
 class Truck (models.Model):
 	truck_registration_number = models.CharField(max_length=20,unique=True)
-	truck_driver = models.CharField(max_length=50)
+	truck_driver = models.ForeignKey(User)
 	truck_type_choices = (('Semi-trailer','SEMI-TRAILER'),('Trailer','TRAILER'),('Box-Body','BOX-BODY'))
 	truck_type = models.CharField(max_length=20,choices=truck_type_choices,default='TRAILER')
 	
@@ -23,9 +24,9 @@ class Trip (models.Model):
 	trip_consignee = models.CharField(max_length=50,blank=True)
 	trip_goods_type = models.CharField(max_length=50,blank=True)
 	trip_container_number = models.CharField(max_length=50,blank=True)
-	trip_weight = models.IntegerField(default=100)
-	trip_start_date = models.DateField(default=datetime.date.today)
-	trip_end_date = models.DateField(default=datetime.date.today)
+	trip_weight = models.IntegerField(default=100,blank=True)
+	trip_start_date = models.DateField(default=datetime.date.today,blank=True)
+	trip_end_date = models.DateField(default=datetime.date.today,blank=True)
 
 	def __str__(self):
 		return str(self.id)
@@ -33,17 +34,17 @@ class Trip (models.Model):
 class Document (models.Model):
 	upload = models.FileField(upload_to='uploads/%Y/%m/%d/')
 	name = models.CharField(max_length = 100,default="File")
-	trip = models.ForeignKey(Trip,on_delete=models.CASCADE)
+	trip = models.ForeignKey(Trip)
 
 	def __str__ (self):
 		return self.name
 
 class Expense (models.Model):
 	bill = models.FileField(upload_to='uploads/expense/%Y/%m/%d/',blank=True)
-	amount = models.IntegerField(blank=True)
+	amount = models.IntegerField()
 	reason = models.TextField(blank=True)
 	trip = models.ForeignKey(Trip)
-	employee = models.ForeignKey(Employee_Detail,default=2)
+	employee = models.ForeignKey(Employee_Detail)
 
 	def __str__(self):
 		return str(self.trip.truck_registration_number)+" "+str(self.amount)

@@ -5,6 +5,7 @@ from .forms import TruckForm,TripForm,TripSearchForm,TruckSearchForm,DocsForm, E
 from django.shortcuts import get_object_or_404
 from .models import Truck,Trip,Document,Expense
 from django.contrib.auth.decorators import login_required
+#from homepage.views import index
 
 #This function will display the list of truks present in the data base. truck_List is the list of all objets of the type model Truck which is then passed to the template trucks_list.html . This function will a
 #also respond to search queries that request to filter data according to a particual field of the model truck. searchitemtruck will obtain the value that should be matched
@@ -27,7 +28,7 @@ def trucks_admin(request):
             form = TruckSearchForm()
         return render(request, 'logistics/trucks_list.html', {'truck_list': truck_list,'form': form,'title':"Trucks Admin"})
     else:
-        return redirect(index)
+        return redirect('index')
 
 
 #It first checks if a search form has been submitted. It yes then the list of trips that will be displayed has to be filted according to the query.triptype will
@@ -52,7 +53,7 @@ def trips_admin(request):
             form = TripSearchForm()
         return render(request, 'logistics/trips_list.html', {'trip_list': trip_list,'form': form,'title':"Trip Admin"})
     else:
-        return redirect(index)
+        return redirect('index')
 
 
 #This function will allow us to create a new entry of truck. It checks first if the user is asking for a blank form or has filled the form and os asking to save it.
@@ -65,13 +66,12 @@ def truck_new(request):
             form = TruckForm(request.POST)
             if form.is_valid():
                 truck = form.save(commit=True)
-                truck.save()
                 return redirect(trucks_admin)
         else:
             form = TruckForm()
-        return render(request, 'logistics/truck_edit.html', {'form': form, 'title':"Add Truck"})
+        return render(request, 'logistics/truck_edit.html', {'form': form, 'title':"Add Truck",'operation':'New'})
     else:
-        return redirect(index)
+        return redirect('index')
 
 
 #This function will accept the argument truck_registration_number . This argument stores the value of unique truck id so that we can obtain the particular instance of
@@ -85,13 +85,12 @@ def truck_edit(request, truck_registration_number):
             form = TruckForm(request.POST, instance=truck)
             if form.is_valid():
                 truck = form.save(commit=True)            
-                truck.save()
                 return redirect('trucks_admin')
         else:
             form = TruckForm(instance=truck)
-        return render(request, 'logistics/truck_edit.html', {'form': form, 'title':"Edit Truck Details"})
+        return render(request, 'logistics/truck_edit.html', {'form': form, 'title':"Edit Truck Details",'operation':'Edit'})
     else:
-        return redirect(index)
+        return redirect('index')
 
 #This function will allow us to create a new entry of trip. It checks first if the user is asking for a blank form or has filled the form and os asking to save it.
 #If the user is asking to save the form then the form is saved using form.save() and then the page redirected to the template pointed by the view trips_admin.
@@ -103,13 +102,12 @@ def trip_new(request):
             form = TripForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=True)
-                post.save()
                 return redirect(trips_admin)
         else:
             form = TripForm()
-        return render(request, 'logistics/trip_edit.html', {'form': form,'title':"Add Trip"})
+        return render(request, 'logistics/trip_edit.html', {'form': form,'title':"Add Trip",'operation':'New'})
     else:
-        return redirect(index)
+        return redirect('index')
 
 #This function will accept the argument trip_registration_number . This argument stores the value of unique trip id so that we can obtain the particular instance of
 # of the trip. On obtaining the instance of trip we can then access the trip form with the values filled in with the respective fields of that instance of trip.
@@ -124,15 +122,13 @@ def trip_edit(request, truck_number):
             form = TripForm(request.POST, instance=trip)
             if form.is_valid():
                 trip = form.save(commit=True)
-                
-                trip.save()
                 return redirect('trips_admin')
                 
         else:
             form = TripForm(instance=trip)
         return render(request, 'logistics/trip_edit.html', {'form': form,'title':"Edit Trip"})
     else:
-        return redirect(index)
+        return redirect('index')
 
 #This function will let us view the docs related to the instance of trip that is passes as an argument. docs agrument will store the id of the trip 
 #whose documents we wish to access. 
@@ -141,7 +137,7 @@ def show_docs(request, docs):
         docus = Document.objects.filter(trip=docs)
         return render(request, 'logistics/docs_list.html', {'docus': docus,'title':"View Documents"})            
     else:
-        return redirect(index)     
+        return redirect('index')     
 
 
 def docs_new(request):
@@ -150,13 +146,12 @@ def docs_new(request):
             form = DocsForm(request.POST, request.FILES)
             if form.is_valid():            
                 post = form.save(commit=True)
-                post.save()
                 return redirect(trips_admin)
         else:
             form = DocsForm()
-        return render(request, 'logistics/docs_edit.html', {'form': form,'title':"Add Document"})   
+        return render(request, 'logistics/docs_edit.html', {'form': form,'title':"Add Document",'operation':'New'})   
     else:
-        return redirect(index)
+        return redirect('index')
 
 
 def show_tripexpenses(request,tripid):
@@ -164,7 +159,7 @@ def show_tripexpenses(request,tripid):
         expenses = Expense.objects.filter(trip=tripid)
         return render(request, 'logistics/expenses_list.html', {'expenses': expenses,'title':"View Expenses"})
     else:
-        return redirect(index)                   
+        return redirect('index')                   
 
 
 def tripexpenses_new(request):
@@ -174,76 +169,107 @@ def tripexpenses_new(request):
             form =ExpenseForm(request.POST, request.FILES)   
             if form.is_valid():
                 post = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                post.save()
                 return redirect(trips_admin)
         else:
             form = ExpenseForm()
-        return render(request, 'logistics/expense_edit.html', {'form': form,'title':"Add Trip Expense"})
+        return render(request, 'logistics/expense_edit.html', {'form': form,'title':"Add Trip Expense",'operation':'New'})
     else:
-        return redirect(index)
+        return redirect('index')
 
 
 def delete_truck(request,did):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
-        query = Truck.objects.get(pk=did)
-        
+        query = Truck.objects.get(pk=did)        
         query.delete()
         return redirect('trucks_admin')
     else:
-        return redirect(index)
+        return redirect('index')
 
 
 def delete_trip(request,did):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
-        query = Trip.objects.get(pk=did)
-        
+        query = Trip.objects.get(pk=did)        
         query.delete()
         return redirect('trips_admin')
     else:
-        return redirect(index)
+        return redirect('index')
 
  
 def show_tripexpenses_all(request):
-    if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
-    
+    if request.user.is_authenticated() and request.user.groups.all()[0].id==2:     
         expenses = Expense.objects.all()
         return render(request, 'logistics/expenses_list_all.html', {'expenses': expenses,'title':"All Expenses"})
     else:
-        return redirect(index)                    
+        return redirect('index')                    
 
 def tripexpenses_new_all(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
-        if request.method == "POST":
-            
+        if request.method == "POST":            
             form =ExpenseForm(request.POST, request.FILES)   
             if form.is_valid():
                 post = form.save(commit=True)
-                #post.author = request.user
-                #post.published_date = timezone.now()
-                post.save()
                 return redirect('show_tripexpenses_all')
         else:
             form = ExpenseForm()
-        return render(request, 'logistics/expense_edit_all.html', {'form': form,'title':"Edit Expense"})
+        return render(request, 'logistics/expense_edit_all.html', {'form': form,'title':"Add Expense",'operation':'New'})
     else:
-        return redirect(index)
+        return redirect('index')
 
 def tripexpenses_edit(request, expenseid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
-        expense = Expense.objects.get(id=expenseid)
-         
+        expense = Expense.objects.get(id=expenseid)         
         if request.method == "POST":
             form = ExpenseForm(request.POST, instance=expense)
             if form.is_valid():
                 expense = form.save(commit=True)
-                
-                expense.save()
-                return redirect('show_tripexpenses_all')
-                
+                return redirect('show_tripexpenses_all')                
         else:
             form = ExpenseForm(instance=expense)
-        return render(request, 'logistics/logistics/expense_edit_all.html', {'form': form,'title':"Edit Trip Expense"})
+        return render(request, 'logistics/logistics/expense_edit_all.html', {'form': form,'title':"Edit Trip Expense",'operation':'Edit'})
     else:
-        return redirect(index)
+        return redirect('index')
+
+def trips_employee(request):
+    if request.method == "POST":
+            form = TripSearchForm(request.POST)
+
+            if form.is_valid():
+                searchitem = form.cleaned_data['trip_search_item']
+                triptype = form.cleaned_data['trip_type']
+                trip_list = Trip.objects.filter(**{triptype: searchitem})
+                return render(request, 'logistics/trips_list.html', {'trip_list': trip_list,'form': form})
+    else:
+        trip_list = Trip.objects.filter(truck_registration_number__truck_driver=request.user)
+
+        form = TripSearchForm()
+        return render(request, 'logistics/trips_list_employee.html', {'trip_list': trip_list,'form': form})
+
+def trip_new_employee(request):
+    print ("Hello")
+    if request.method == "POST":
+        print ("Hi")
+        form = TripForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=True)
+            return redirect('index')
+    else:
+        form = TripForm()
+    return render(request, 'logistics/trip_edit_employee.html', {'form': form})     
+
+def show_docs_employee(request, docs):
+    
+    docus = Document.objects.filter(trip=docs).values()
+    return render(request, 'logistics/doc_list_employee.html', {'docus': docus})
+            
+            
+def docs_new_employee(request):
+    if request.method == "POST":
+        
+        form = DocsForm(request.POST, request.FILES)
+        if form.is_valid():    
+        
+            post = form.save(commit=True)
+            return redirect('index')
+    else:
+        form = DocsForm()
+    return render(request, 'logistics/doc_edit_employee.html', {'form': form}) 

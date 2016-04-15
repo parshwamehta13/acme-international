@@ -1,66 +1,56 @@
 {% extends 'logistics/firstpage.html' %}
-
-
 {% block content %}
-	<div class="row"></div>
- <div class="row"></div>
- <h4 class="center-align headingcolour">Add Cashbook</h4>
- <div class="heading-divider grey lighten-2"> </div>
- <div class="row"></div>
- <div class="row"></div>
- <div class="row"></div>
-    <form method="POST" enctype="multipart/form-data" class="post-form ">{% csrf_token %}
-    	 <div class="row extra-bottom-padding">
-
-            <div class="col-sm-2 col-sm-offset-2">
-        <label for="id_driver">Employee Number</label>
-    </div>
-    <div class="col-sm-5">
-        
-        {{ form.employee_number}} <br>
-    </div>
+<div class="row"></div>
+<div class="row"></div>
+<h4 class="center-align headingcolour">Add Cashbook</h4>
+<div class="heading-divider grey lighten-2"> </div>
+<div class="row"></div>
+<div class="row"></div>
+<div class="row"></div>
+<form method="POST" enctype="multipart/form-data" class="post-form ">
+    {% csrf_token %}
+    <div class="row extra-bottom-padding">
+        <div class="col-sm-2 col-sm-offset-2">
+            <label for="id_driver">Employee Number</label>
+        </div>
+        <div class="col-sm-5">
+            {{ form.employee_number}} <br>
+        </div>
     </div>
     <div class="row extra-bottom-padding">
-
-    		<div class="col-sm-2 col-sm-offset-2">
-        <label for="id_driver">Account Number</label>
+        <div class="col-sm-2 col-sm-offset-2">
+            <label for="id_driver">Account Number</label>
+        </div>
+        <div class="col-sm-5">
+            {{ form.account_number}} <br>
+        </div>
     </div>
-    <div class="col-sm-5">
-    	
-        {{ form.account_number}} <br>
-    </div>
-    </div>
-
-     <div class="row extra-bottom-padding">
-    		<div class="col-sm-2 col-sm-offset-2">
-        <label for="id_driver"> Amount Added</label>
-    </div>
-    <div class="col-sm-5">
-        {{ form.amount_added}} <br>
-    </div>
-    </div>
-     
-     <div class="row extra-bottom-padding">
-            <div class="col-sm-2 col-sm-offset-2">
-        <label for="id_driver"> Transaction Date</label>
-    </div>
-    <div class="col-sm-5">
-        {{ form.transaction_date}} <br>
-    </div>
-    </div>
-
     <div class="row extra-bottom-padding">
-            <div class="col-sm-2 col-sm-offset-2">
-        <label for="id_driver"> Transaction Details</label>
+        <div class="col-sm-2 col-sm-offset-2">
+            <label for="id_driver"> Amount Added</label>
+        </div>
+        <div class="col-sm-5">
+            {{ form.amount_added}} <br>
+        </div>
     </div>
-    <div class="col-sm-5">
-        {{ form.transaction_details}} <br>
+    <div class="row extra-bottom-padding">
+        <div class="col-sm-2 col-sm-offset-2">
+            <label for="id_driver"> Transaction Date</label>
+        </div>
+        <div class="col-sm-5">
+            {{ form.transaction_date}} <br>
+        </div>
     </div>
+    <div class="row extra-bottom-padding">
+        <div class="col-sm-2 col-sm-offset-2">
+            <label for="id_driver"> Transaction Details</label>
+        </div>
+        <div class="col-sm-5">
+            {{ form.transaction_details}} <br>
+        </div>
     </div>
     <div class="center-align">
         <button type="submit" value="Upload" class="save btn btn-default">Save</button>
     </div>
-    
-    </form>
- {% endblock %}
- 
+</form>
+{% endblock %}

@@ -18,4 +18,7 @@ urlpatterns = [
     url(r'^showexpenses/$', views.show_tripexpenses_all, name='views.show_tripexpenses_all'),
     url(r'^(?P<expenseid>\w+)/showexpenses/$', views.tripexpenses_edit, name='tripexpense_edit'),
     url(r'^new/trip/$', views.trip_new, name='trip_new'),
+    url(r'^new_employee/trip/$', views.trip_new_employee, name='trip_new_employee'),
+    url(r'^new_employee/document/$', views.docs_new_employee, name='docs_new_employee'),
+    url(r'^(?P<docs>\w+)/showdocemployee/$', views.show_docs_employee, name='show_docs_employee'),
 ]

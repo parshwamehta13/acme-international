@@ -48,7 +48,7 @@ class EmployeeCashBook (models.Model):
 	account_number = models.ForeignKey(BankAccount)
 	amount_added = models.IntegerField()
 	transaction_date = models.DateField(default=datetime.date.today)
-	transaction_details = models.TextField()
+	transaction_details = models.TextField(blank=True)
 
 	def __str__(self):
 		return str(self.employee_number.user.username)+" "+str(self.amount_added)+" "+str(self.id)

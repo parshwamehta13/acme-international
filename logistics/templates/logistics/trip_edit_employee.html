@@ -1,0 +1,119 @@
+{% extends 'homepage/second.html' %}
+
+
+{% block content %}
+	<div class="row"></div>
+ <div class="row"></div>
+ <h4 class="center-align headingcolour">New trip</h4>
+ <div class="heading-divider grey lighten-2"> </div>
+ <div class="row"></div>
+ <div class="row"></div>
+ <div class="row"></div>
+    <form method="POST" class="post-form">{% csrf_token %}
+    	<div class="row">
+    		<div class="col s2 offset-s2">
+        <label for="truck_registration_number"> Registration number</label>
+    </div>
+    <div class="col s5">
+    	<i class="material-icons prefix shiftdown">mode_edit</i>
+        {{ form.truck_registration_number}} <br>
+    </div>
+    </div>
+
+    <div class="row extra-bottom-padding">
+
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="shipper">Shipper</label>
+    </div>
+    <div class="col-sm-5">
+    	<i class="material-icons prefix shiftdown">account_circle</i>
+        {{ form.trip_shipper}} <br>
+    </div>
+    </div>
+
+     <div class="row extra-bottom-padding">
+    		<div class="col-sm-2 col-sm-offset-2">
+        <label for="destination"> Destination</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_destination}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="source"> Source</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_source}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="consignee"> Consignee</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_consignee}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="start_date">Start Date(yyyy-mm-dd)</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_start_date}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="start_date">End Date(yyyy-mm-dd)</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_end_date}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Container number</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_container_number}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Trip Distance</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_distance}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Weight</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_weight}} <br>
+    </div>
+    </div>
+    <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Container number</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_container_number}} <br>
+    </div>
+    </div>
+     <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+        <label for="id_driver"> Goods Type</label>
+    </div>
+    <div class="col-sm-5">
+        {{ form.trip_goods_type}} <br>
+    </div>
+    </div>
+ <div class="center-align">
+        <button type="submit" class="save btn btn-default">Save</button>
+    </div>
+    </form>
+ {% endblock %}
+ 

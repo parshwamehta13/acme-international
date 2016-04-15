@@ -10,6 +10,8 @@ from accounts.models import EmployeeCashBook
 from logistics.models import Expense
 from logistics.views import trips_admin
 from django.contrib.auth.decorators import login_required
+from logistics.models import Trip
+from logistics.forms import TripSearchForm
 # Create your views here.
 
 
@@ -100,7 +102,6 @@ def employee_new(request):
             form = EmployeeForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=True)
-                post.save()
                 return redirect(employee_list)
         else:
             form = EmployeeForm()
@@ -144,13 +145,29 @@ def task_new(request):
             form = TaskForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=True)
-                post.save()
                 return redirect(task_management)
         else:
             form = TaskForm()
         return render(request, 'homepage/task_edit.html', {'form': form,'title':"Assign Task"})
     else:
         return redirect(index)
+
+
+def view_trip(request):
+    user_logged = request.user
+    trip_list = Trip.objects.filter(truck_registration_number__truck_driver=user_logged)
+    if request.method == "POST":
+        form = TripSearchForm(request.POST)
+        if form.is_valid():
+            searchitem = form.cleaned_data['trip_search_item']
+            triptype = form.cleaned_data['trip_type']
+            trip_list = Trip.objects.filter(**{triptype: searchitem})
+            return render(request, 'homepage/success_1.html', {'trip_list': trip_list,'form': form})
+    else:
+        trip_list = Trip.objects.filter(truck_registration_number__truck_driver=user_logged)
+        form = TripSearchForm()
+        return render(request, 'homepage/success_1.html',{'trip_list':trip_list,'form':form})
+
 
 def task_edit(request, taskid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
@@ -160,8 +177,6 @@ def task_edit(request, taskid):
             form = TaskForm(request.POST, instance=task)
             if form.is_valid():
                 task = form.save(commit=True)
-                
-                task.save()
                 return redirect('task_management')
         else:
             form = TaskForm(instance=task)
@@ -189,7 +204,6 @@ def cashbook_new(request):
             form = CashbookForm(request.POST)
             if form.is_valid():            
                 post = form.save(commit=True)
-                post.save()
                 return redirect(employee_list)
         else:
             form = CashbookForm()
@@ -205,8 +219,6 @@ def cashbook_edit(request, cashbookid):
             form = CashbookForm(request.POST, instance=cashbook)
             if form.is_valid():
                 cash = form.save(commit=True)
-                
-                cash.save()
                 return redirect('employee_list')
                 
         else:

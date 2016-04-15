@@ -1,59 +1,52 @@
 {% extends 'logistics/firstpage.html' %}
-
-
 {% block content %}
 <div class="row">
-	<h4 class="headingcolour center-align">Add Employee</h4>
-    <form method="POST" enctype="multipart/form-data" class="post-form ">{% csrf_token %}
-    	 <div class="row extra-bottom-padding">
-
+    <h4 class="headingcolour center-align">Add Employee</h4>
+    <form method="POST" enctype="multipart/form-data" class="post-form ">
+        {% csrf_token %}
+        <div class="row extra-bottom-padding">
             <div class="col-sm-2 col-sm-offset-2">
-        <label for="username">Username</label>
-    </div>
-    <div class="col-sm-5">
-        <input id="username" name='username'type="text" class="validate">
-    </div>
-    </div>
-    <div class="row extra-bottom-padding">
-
-    		<div class="col-sm-2 col-sm-offset-2">
-        <label for="first_name">First Name</label>
-    </div>
-    <div class="col-sm-5">
-    	<input id="first_name" name='first_name' type="text" class="validate">
-    </div>
-    </div>
-
-     <div class="row extra-bottom-padding">
-    		<div class="col-sm-2 col-sm-offset-2">
-        <label for="last_name">Last Name</label>
-    </div>
-    <div class="col-sm-5">
-        <input id="last_name" name='last_name' type="text" class="validate">
-    </div>
-    </div>
-     
-     <div class="row extra-bottom-padding">
+                <label for="username">Username</label>
+            </div>
+            <div class="col-sm-5">
+                <input id="username" name='username'type="text" class="validate">
+            </div>
+        </div>
+        <div class="row extra-bottom-padding">
             <div class="col-sm-2 col-sm-offset-2">
-        <label for="salary"> Salary</label>
-    </div>
-    <div class="col-sm-5">
-        <input id="salary" name='salary' type="number" class="validate">
-    </div>
-    </div>
-
-    <div class="row extra-bottom-padding">
+                <label for="first_name">First Name</label>
+            </div>
+            <div class="col-sm-5">
+                <input id="first_name" name='first_name' type="text" class="validate">
+            </div>
+        </div>
+        <div class="row extra-bottom-padding">
             <div class="col-sm-2 col-sm-offset-2">
-        <label for="cash_in_hand">Cash In Hand (Initially)</label>
-    </div>
-    <div class="col-sm-5">
-        <input id="cash_in_hand" name='cash_in_hand' type="number" class="validate">
-    </div>
-    </div>
-    <div class="center-align">
-        <button type="submit" value="Upload" class="save btn btn-default">Save</button>
-    </div>
-   	</form>
-  </div>
-
+                <label for="last_name">Last Name</label>
+            </div>
+            <div class="col-sm-5">
+                <input id="last_name" name='last_name' type="text" class="validate">
+            </div>
+        </div>
+        <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+                <label for="salary"> Salary</label>
+            </div>
+            <div class="col-sm-5">
+                <input id="salary" name='salary' type="number" class="validate">
+            </div>
+        </div>
+        <div class="row extra-bottom-padding">
+            <div class="col-sm-2 col-sm-offset-2">
+                <label for="cash_in_hand">Cash In Hand (Initially)</label>
+            </div>
+            <div class="col-sm-5">
+                <input id="cash_in_hand" name='cash_in_hand' type="number" class="validate">
+            </div>
+        </div>
+        <div class="center-align">
+            <button type="submit" value="Upload" class="save btn btn-default">Save</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

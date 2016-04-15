@@ -1,0 +1,75 @@
+{% extends 'homepage/second.html' %}
+{% block content %}
+<div class="fixed-action-btn" style="top: 60px; right: 24px;">
+    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'trip_new_employee' %}"><i class="material-icons left">add</i>Add Trip</a>
+    </a>
+</div>
+<div class="container-fluid">
+   <div class="row">
+        <h4 class="center-align headingcolour">Trips List</h4>
+   </div>
+   <form method="POST" class="post-form">
+      {% csrf_token %}
+      <div class="row">
+         <div class="col l4 s6">
+            <label for="search_item"> </label>
+            {{ form.trip_search_item}} <br>
+         </div>
+         <div class="col l2 s6">
+            <label for="search_item_by"> </label>
+            {{ form.trip_type}} <br>
+         </div>
+         <div class="col l1 s6">
+            <button type="submit" class="save btn btn-default red darken-1">Go</button>
+         </div>
+         <div class="col l1 s6">
+            <a href="{% url 'trips_admin' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
+         </div>
+      </div>
+   </form>
+   <!-- <div class="row">
+      <h4 class="col s2 headingcolour">Trips List</h4>
+      <a  href="{% url 'trip_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
+   </div> -->
+   {% if trip_list %}
+   <table class="striped centered responsive-table">
+      <thead>
+         <tr>
+            <th>Trip Owner</th>
+            <th>Registeration number</th>
+            <th>Source </th>
+            <th>Destination</th>
+            <th>Distance</th>
+            <th>Good Type</th>
+            <th>Weight</th>
+            <th>Trip Start Date</th>
+            <th>Trip End Date</th>
+            <th>View/Add Document</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for trip in trip_list %}
+         <tr>
+            <td>{{trip.trip_entry}}</td>
+            <td>{{trip.truck_registration_number}}</td>
+            <td>{{trip.trip_source}}</td>
+            <td>{{trip.trip_destination}}</td>
+            <td>{{trip.trip_distance}}</td>
+            <td>{{trip.trip_goods_type}}</td>
+            <td>{{trip.trip_weight}}</td>
+            <td>{{trip.trip_start_date}}</td>
+            <td>{{trip.trip_end_date}}</td>
+            <td>
+               <a href="{% url 'show_docs' docs=trip.id %}">
+               <p>add</p>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+   {% else %}
+   <p>No trips registered !</p>
+   {% endif %}
+</div>
+</form>
+{% endblock %}

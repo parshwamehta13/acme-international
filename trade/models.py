@@ -11,13 +11,14 @@ class Good(models.Model):
 
 	def __str__(self):
 		return self.good_type
+
 @python_2_unicode_compatible
 class Transaction (models.Model):
-	reference_name = models.CharField(max_length=100,blank=True)
+	reference_name = models.CharField(max_length=100)
 	from_company = models.CharField(max_length=100,blank=True)
 	transaction_date = models.DateField(default=datetime.date.today)
 	transaction_type = models.CharField(max_length=10,choices=(('Import','Import'),('Export','Export')),default='Import')
-	goods_type = models.ForeignKey(Good,on_delete=models.CASCADE)
+	goods_type = models.ForeignKey(Good)
 	goods_quantity = models.IntegerField(default=0)
 	def __str__ (self):
 		return self.transaction_type+" "+str(self.id)
@@ -40,7 +41,7 @@ class Transactionsearch(models.Model):
 class Document (models.Model):
 	upload = models.FileField(upload_to='uploads/%Y/%m/%d/')
 	name = models.CharField(max_length = 100,default="File")
-	transaction_number = models.ForeignKey(Transaction,on_delete=models.CASCADE)
+	transaction_number = models.ForeignKey(Transaction)
 
 	def __str__ (self):
 		return self.name

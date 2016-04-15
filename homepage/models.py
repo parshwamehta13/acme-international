@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 
 class Employee_Detail(models.Model):
-	user = models.ForeignKey(User,on_delete=models.CASCADE)
+	user = models.ForeignKey(User)
 	salary = models.IntegerField()
 	cash_in_hand = models.IntegerField(default=0)
 
@@ -14,8 +14,8 @@ class Employee_Detail(models.Model):
 		return str(self.user.username)+" "+str(self.salary)
 
 class Task (models.Model):
-	assigned_to = models.ForeignKey(User,on_delete=models.CASCADE)
-	task_description = models.TextField()
+	assigned_to = models.ForeignKey(User)
+	task_description = models.TextField(blank=True)
 	assigned_on = models.DateField(default=datetime.date.today)
 	deadline = models.DateField()
 	status = models.BooleanField(default=False)

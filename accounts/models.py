@@ -7,6 +7,7 @@ from homepage.models import Employee_Detail
 #from django.contrib.auth.models import User
 
 # Create your models here.
+#This will create the model for storing account details for particular account
 @python_2_unicode_compatible
 class BankAccount (models.Model):
 	account_number = models.CharField(max_length=30,unique=True)
@@ -18,7 +19,7 @@ class BankAccount (models.Model):
 
 	def __str__ (self):
 		return str(self.account_number)
-
+#Allow us to search for a bankaccount according to its attributes.
 class BankAccountssearch(models.Model):
 	account_search_item = models.CharField(max_length=300)
 	account_search_by = (('account_number','Account Number'),('amount','Amount'))
@@ -26,6 +27,7 @@ class BankAccountssearch(models.Model):
 	def __str__(self):
 		return str(self.id)
 
+#Will create a table fro storing all the details reatled to a transaction
 @python_2_unicode_compatible
 class Transaction (models.Model):
 	account_number = models.ForeignKey(BankAccount,on_delete=models.CASCADE)
@@ -40,7 +42,7 @@ class Transaction (models.Model):
 	
 	def __str__(self):
 		return str(self.account_number.account_number)+" "+str(self.transaction_type)+" "+str(self.transaction_amount)
-
+#Table fro storing employee cashbook data
 @python_2_unicode_compatible
 class EmployeeCashBook (models.Model):
 	#employee = models.ForeignKey(User)
@@ -52,7 +54,7 @@ class EmployeeCashBook (models.Model):
 
 	def __str__(self):
 		return str(self.employee_number.user.username)+" "+str(self.amount_added)+" "+str(self.id)
-
+#Updates amount 
 def update_amount (sender, instance, **kwargs):
 	if instance.transaction_type == 'Debit':
 		instance.account_number.amount = instance.account_number.amount - instance.transaction_amount
@@ -62,6 +64,7 @@ def update_amount (sender, instance, **kwargs):
 
 post_save.connect(update_amount, sender=Transaction)
 
+#Updates cash in hand depending on value added to employee cashbook
 def update_cash_in_hand (sender, instance,**kwargs):
 	instance.employee_number.cash_in_hand = instance.employee_number.cash_in_hand + instance.amount_added
 	instance.account_number.amount = instance.account_number.amount - instance.amount_added
@@ -70,6 +73,7 @@ def update_cash_in_hand (sender, instance,**kwargs):
 
 post_save.connect(update_cash_in_hand, sender=EmployeeCashBook)
 
+#Will check if an account has enough balance to allow transaction
 def check_transaction (sender,instance,**kwargs):
 	if instance.transaction_type == 'Debit' and instance.account_number.amount - instance.transaction_amount < 0:
 		raise Exception("Not enough balance")

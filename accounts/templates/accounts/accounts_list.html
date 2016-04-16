@@ -31,27 +31,28 @@
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
+                <th>Edit</th>
+                <th>Add/View Transaction(s)</th>
                 <th>Account Number</th>
                 <th>Account Holder</th>
                 <th>Bank</th>
-                <th>Amount</th>
-                <th>Add/View Transaction(s)</th>
+                <th>Amount</th>                
                 <th></th>
             </tr>
         </thead>
         <tbody>
             {% for account in accounts_list %}	    	
             <tr>
-                <td>{{account.account_number}}</td>
-                <td>{{account.account_holder}}</td>
-                <td>{{account.bank}}</td>
-                <td>{{account.amount}}</td>
-                <td><a href="{% url 'show_transaction' transaction=account.account_number %}"><i class="small material-icons">visibility</i></a>
-                </td>
                 <td>
                     <a href="{% url 'account_edit' account_number=account.account_number %}" class="btn-floating btn-small teal darken-1">
                     <i class="small material-icons ">mode_edit</i></a>
                 </td>
+                <td><a href="{% url 'show_transaction' transaction=account.account_number %}"><i class="small material-icons">visibility</i></a>
+                </td>    
+                <td>{{account.account_number}}</td>
+                <td>{{account.account_holder}}</td>
+                <td>{{account.bank}}</td>
+                <td>{{account.amount}}</td>
             </tr>
             {% endfor %}
         </tbody>

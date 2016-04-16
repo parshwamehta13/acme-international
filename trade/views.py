@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from .models import Transaction,Good,Document
 
 
+#This will allow us to view the list of good and their details
 def goods_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
@@ -25,7 +26,7 @@ def goods_admin(request):
     else:
         return redirect(index)
 
-
+#This will allow us to add a new good
 def good_new(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
@@ -41,7 +42,7 @@ def good_new(request):
 
 
 
-
+#This will allow us to edit goods
 def good_edit(request, goodid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         good = Good.objects.get(id=goodid)
@@ -57,7 +58,7 @@ def good_edit(request, goodid):
     else:
         return redirect(index)
 
-
+# This will allow us to view all the good transactions that have been made.
 def transactions_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
@@ -79,7 +80,7 @@ def transactions_admin(request):
     else:
         return redirect(index)
 
-
+#This will allow us to add a new transaction
 def transaction_new(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
@@ -92,7 +93,7 @@ def transaction_new(request):
         return render(request, 'trade/transaction_edit.html', {'form': form,'title':"Add Trade"})
     else:
         return redirect(index)
-
+#This will allow us to edit transactions
 def transaction_edit(request, transid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         transaction = Transaction.objects.get(id=transid)
@@ -113,7 +114,7 @@ def transaction_edit(request, transid):
         return redirect(index)
 
 
-
+#This will allow us to view docs realted to a transaction witj transaction_number field == docs
 def show_docs_t(request, docs):  
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         docus = Document.objects.filter(transaction_number=docs)
@@ -121,7 +122,7 @@ def show_docs_t(request, docs):
     else:
         return redirect(index)
             
-
+#This will allow us to create a new documnet for transaction
 def docs_new_t(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":

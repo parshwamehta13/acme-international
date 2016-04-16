@@ -5,7 +5,6 @@ from .forms import TruckForm,TripForm,TripSearchForm,TruckSearchForm,DocsForm, E
 from django.shortcuts import get_object_or_404
 from .models import Truck,Trip,Document,Expense
 from django.contrib.auth.decorators import login_required
-#from homepage.views import index
 
 #This function will display the list of truks present in the data base. truck_List is the list of all objets of the type model Truck which is then passed to the template trucks_list.html . This function will a
 #also respond to search queries that request to filter data according to a particual field of the model truck. searchitemtruck will obtain the value that should be matched
@@ -139,7 +138,7 @@ def show_docs(request, docs):
     else:
         return redirect('index')     
 
-
+# Method to create a new Trip Document
 def docs_new(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         if request.method == "POST":        
@@ -153,7 +152,7 @@ def docs_new(request):
     else:
         return redirect('index')
 
-
+# Method to create a show expense of particular trip
 def show_tripexpenses(request,tripid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         expenses = Expense.objects.filter(trip=tripid)
@@ -161,7 +160,7 @@ def show_tripexpenses(request,tripid):
     else:
         return redirect('index')                   
 
-
+# Method to add an expense
 def tripexpenses_new(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         if request.method == "POST":
@@ -176,7 +175,7 @@ def tripexpenses_new(request):
     else:
         return redirect('index')
 
-
+# Method to delete a truck
 def delete_truck(request,did):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         query = Truck.objects.get(pk=did)        
@@ -186,6 +185,7 @@ def delete_truck(request,did):
         return redirect('index')
 
 
+# Method to delete a trip
 def delete_trip(request,did):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         query = Trip.objects.get(pk=did)        
@@ -194,7 +194,8 @@ def delete_trip(request,did):
     else:
         return redirect('index')
 
- 
+
+# Method to show all trip expenses
 def show_tripexpenses_all(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:     
         expenses = Expense.objects.all()
@@ -202,6 +203,8 @@ def show_tripexpenses_all(request):
     else:
         return redirect('index')                    
 
+
+# Method to add new expenses to employee 
 def tripexpenses_new_all(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         if request.method == "POST":            
@@ -215,6 +218,8 @@ def tripexpenses_new_all(request):
     else:
         return redirect('index')
 
+
+# Method to Edit Trip Expense
 def tripexpenses_edit(request, expenseid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2: 
         expense = Expense.objects.get(id=expenseid)         
@@ -229,6 +234,8 @@ def tripexpenses_edit(request, expenseid):
     else:
         return redirect('index')
 
+
+# Method to view trips- Employee Login
 def trips_employee(request):
     if request.method == "POST":
             form = TripSearchForm(request.POST)
@@ -244,10 +251,10 @@ def trips_employee(request):
         form = TripSearchForm()
         return render(request, 'logistics/trips_list_employee.html', {'trip_list': trip_list,'form': form})
 
+
+# Method to add new trip by Employee
 def trip_new_employee(request):
-    print ("Hello")
     if request.method == "POST":
-        print ("Hi")
         form = TripForm(request.POST)
         if form.is_valid():
             post = form.save(commit=True)
@@ -256,12 +263,13 @@ def trip_new_employee(request):
         form = TripForm()
     return render(request, 'logistics/trip_edit_employee.html', {'form': form})     
 
+# Method to show documents of a particular trip
 def show_docs_employee(request, docs):
     
-    docus = Document.objects.filter(trip=docs).values()
+    docus = Document.objects.filter(trip=docs)
     return render(request, 'logistics/doc_list_employee.html', {'docus': docus})
             
-            
+# Method to add a new document by an Employee            
 def docs_new_employee(request):
     if request.method == "POST":
         

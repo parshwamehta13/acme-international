@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^addcashbook/$', views.cashbook_new, name='cashbook_new'),
     url(r'^(?P<taskid>\w+)/edittask/$', views.task_edit, name='task_edit'),
     url(r'^viewtask/add/$', views.task_new, name='task_new'),
-    url(r'^homepage/viewtrip/$', views.view_trip, name='trips_new'),
+    url(r'^viewtrip/$', views.view_trip, name='trips_new'),
     url(r'^logout/$',views.logout_user, name='logout_user'),
     url(r'^addemployee/$',views.add_employee, name='add_employee'),
     url(r'^logistics/',include('logistics.urls')),

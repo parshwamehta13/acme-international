@@ -31,6 +31,8 @@
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
+                <th>Edit</th>
+                <th>Delete</th>
                 <th>Number</th>
                 <th>Date</th>
                 <th>Invoiced To</th>
@@ -44,6 +46,11 @@
         <tbody>
             {% for invoice in invoice_list %}
             <tr>
+                <td>  <a href="{% url 'invoice_edit' invoice_number=invoice.id %}" class="btn-floating btn-small teal darken-1">
+                    <i class="small material-icons">mode_edit</i>
+                    </a>
+                </td>
+                <td><a href="{% url 'delete_invoice' did=invoice.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 <td>{{invoice.invoice_number}}</td>
                 <td>{{invoice.date}}</td>
                 <td>{{invoice.invoiced_to}}</td>
@@ -52,11 +59,7 @@
                 <td>{{invoice.unit_price}}</td>
                 <td>{{invoice.total_price}}</td>
                 <td>{{invoice.vat}}</td>
-                <td>  <a href="{% url 'invoice_edit' invoice_number=invoice.id %}" class="btn-floating btn-small teal darken-1">
-                    <i class="small material-icons">mode_edit</i>
-                    </a>
-                </td>
-                <td><a href="{% url 'delete_invoice' did=invoice.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+                
             </tr>
             {% endfor %}
         </tbody>

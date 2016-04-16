@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 from .models import Invoice,Receipt
 from django.contrib.auth.decorators import login_required
 
-
+# Method to Display all Receipts and query them
 def receipts_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:    
         if request.method == "POST":
@@ -22,7 +22,7 @@ def receipts_admin(request):
     else:
         return redirect(index)
 
-
+# Method to Add a new receipt
 def receipt_new(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
@@ -35,7 +35,8 @@ def receipt_new(request):
         return render(request, 'retail/receipt_edit.html', {'form': form,'title':'Add New Receipt'})
     else:
         return redirect(index)
-           
+
+# Method to Edit a Receipt           
 def receipt_edit(request, receipt_number):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         receipt = get_object_or_404(Receipt, id=receipt_number)       
@@ -50,6 +51,7 @@ def receipt_edit(request, receipt_number):
     else:
         return redirect(index)
 
+# Method to Display all Invoices and query them
 def invoices_admin(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:    
         if request.method == "POST":
@@ -68,7 +70,7 @@ def invoices_admin(request):
     else:
         return redirect(index)
 
-
+# Method to add new invoice
 def invoice_new(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method == "POST":
@@ -81,7 +83,8 @@ def invoice_new(request):
         return render(request, 'retail/invoice_edit.html', {'form': form,'title':'Add Invoice'})
     else:
         return redirect(index)
-          
+
+# Method to edit invoice given invoice number          
 def invoice_edit(request, invoice_number):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         invoice = get_object_or_404(Invoice, id=invoice_number)
@@ -97,7 +100,7 @@ def invoice_edit(request, invoice_number):
     else:
         return redirect(index)
 
- 
+# Method to delete invoice
 def delete_invoice(request,did):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         query = Invoice.objects.get(pk=did)
@@ -105,7 +108,8 @@ def delete_invoice(request,did):
         return redirect('invoices_admin')
     else:
         return redirect(index)
- 
+
+# Method to delete receipt 
 def delete_receipt(request,did):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         query = Receipt.objects.get(pk=did)

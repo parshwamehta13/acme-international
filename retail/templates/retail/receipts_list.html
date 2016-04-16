@@ -31,6 +31,8 @@
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
+                <th>Edit</th>
+                <th>Delete</th>
                 <th>Number</th>
                 <th>Date</th>
                 <th>From</th>
@@ -45,6 +47,11 @@
         <tbody>
             {% for receipt in receipt_list %}
             <tr>
+                <td>  <a href="{% url 'receipt_edit' receipt_number=receipt.id %}" class="btn-floating btn-small teal darken-1">
+                    <i class="small material-icons">mode_edit</i>
+                    </a>
+                </td>
+                <td><a href="{% url 'delete_receipt' did=receipt.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 <td>{{receipt.receipt_number}}</td>
                 <td>{{receipt.date}}</td>
                 <td>{{receipt.receipt_from}}</td>
@@ -53,11 +60,6 @@
                 <td>{{receipt.payment_mode}}</td>
                 <td>{{receipt.credited_to}}</td>
                 <td>{{receipt.balance}}</td>
-                <td>  <a href="{% url 'receipt_edit' receipt_number=receipt.id %}" class="btn-floating btn-small red">
-                    <i class="small material-icons">mode_edit</i>
-                    </a>
-                </td>
-                <td><a href="{% url 'delete_receipt' did=receipt.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
             </tr>
             {% endfor %}
         </tbody>

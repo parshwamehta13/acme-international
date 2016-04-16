@@ -31,29 +31,31 @@
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
+                <th>Edit</th>
+                <th>Delete</th>
                 <th>Assigned to</th>
                 <th>Task Description</th>
                 <th>Assigned on</th>
                 <th>Deadline</th>
                 <th>Status</th>
                 <th>Priority</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for task in task_list %}
             <tr>
+                <td>  <a href="{% url 'task_edit' taskid=task.id %}" class="btn-floating btn-small teal darken-1">
+                    <i class="small material-icons">mode_edit</i>
+                    </a>
+                </td>
+                <td><a href="{% url 'delete_task' did=task.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 <td>{{task.assigned_to}}</td>
                 <td>{{task.task_description}}</td>
                 <td>{{task.assigned_on}}</td>
                 <td>{{task.deadline}}</td>
                 <td>{{task.status}}</td>
                 <td>{{task.priority}}</td>
-                <td>  <a href="{% url 'task_edit' taskid=task.id %}" class="btn-floating btn-small teal darken-1">
-                    <i class="small material-icons">mode_edit</i>
-                    </a>
-                </td>
-                <td><a href="{% url 'delete_task' did=task.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+                
             </tr>
             {% endfor %}
         </tbody>

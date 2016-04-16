@@ -9,6 +9,14 @@
  <div class="row"></div>
  <div class="row"></div>
  <div class="row"></div>
+ {% if form.errors %}
+    
+   <div class="row alert alert-error">
+      <h6 class="center-align errormess"> * Invalid Entries </h6> 
+         <strong>{{ error|escape }}</strong>
+   </div>
+       
+{% endif %}
     <form method="POST" class="post-form">{% csrf_token %}
     	<div class="row">
     		<div class="col s2 offset-s2">
@@ -95,13 +103,13 @@
         {{ form.trip_weight}} <br>
     </div>
     </div>
-    <div class="row extra-bottom-padding">
+    <!-- <div class="row extra-bottom-padding">
             <div class="col-sm-2 col-sm-offset-2">
         <label for="id_driver"> Container number</label>
     </div>
     <div class="col-sm-5">
         {{ form.trip_container_number}} <br>
-    </div>
+    </div> -->
     </div>
      <div class="row extra-bottom-padding">
             <div class="col-sm-2 col-sm-offset-2">

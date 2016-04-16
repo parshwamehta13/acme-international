@@ -7,6 +7,14 @@
 <div class="row"></div>
 <div class="row"></div>
 <div class="row"></div>
+{% if form.errors %}
+    
+   <div class="row alert alert-error">
+      <h6 class="center-align errormess"> * Invalid Entries </h6> 
+         <strong>{{ error|escape }}</strong>
+   </div>
+       
+{% endif %}
 <form method="POST" enctype="multipart/form-data" class="post-form">
     {% csrf_token %}
     <div class="row">

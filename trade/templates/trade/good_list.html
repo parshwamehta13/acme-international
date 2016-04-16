@@ -30,20 +30,20 @@
         <table class="striped">
             <thead>
                 <tr>
+                    <th>Edit</th>
                     <th>Good Type</th>
                     <th>Good Quantity</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for good in good_list %}         
                 <tr>
-                    <td>{{good.good_type}}</td>
-                    <td>{{good.good_quantity}}</td>
                     <td>  <a href="{% url 'good_edit' goodid=good.id %}" class="btn-floating btn-small teal darken-1">
                         <i class="small material-icons ">mode_edit</i>
                         </a>
                     </td>
+                    <td>{{good.good_type}}</td>
+                    <td>{{good.good_quantity}}</td>                    
                 </tr>
                 {% endfor %}
             </tbody>

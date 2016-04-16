@@ -6,17 +6,17 @@
 </div>
 <div class="container-fluid">
    <div class="row">
-        <h4 class="center-align headingcolour">Trucks List</h4>
-    </div>
+      <h4 class="center-align headingcolour">Trucks List</h4>
+   </div>
    <form method="POST" class="post-form">
       {% csrf_token %}
       <div class="row">
          <div class="col l4 s6">
-            <label for="search_item"> </label>    	
+            <label for="search_item"> </label>     
             {{ form.truck_search_item}} <br>
          </div>
          <div class="col l2 s6">
-            <label for="search_item_by"> </label>    	
+            <label for="search_item_by"> </label>     
             {{ form.truck_type}} <br>
          </div>
          <div class="col l1 s6">
@@ -30,6 +30,7 @@
       <table class="striped centered bordered responsive-table">
          <thead>
             <tr>
+               <th>Delete</th>
                <th>Registeration number</th>
                <th>Driver</th>
                <th>Truck Type</th>
@@ -38,10 +39,11 @@
          <tbody>
             {% for truck in truck_list %}
             <tr>
+               <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                <td>{{truck.truck_registration_number}}</td>
                <td>{{truck.truck_driver}}</td>
                <td>{{truck.truck_type}}</td>
-               <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+               
             </tr>
             {% endfor %}
          </tbody>

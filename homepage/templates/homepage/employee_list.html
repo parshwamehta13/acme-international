@@ -31,6 +31,7 @@
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
+                <th>Delete</th>
                 <th>User</th>
                 <th>Salary</th>
                 <th>Cash in hand</th>
@@ -42,6 +43,7 @@
         <tbody>
             {% for employee in employees_list %}
             <tr>
+                <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 <td>{{employee.user}}</td>
                 <td>{{employee.salary}}</td>
                 <td>{{employee.cash_in_hand}}</td>
@@ -50,7 +52,7 @@
                         <i class="material-icons icon-cyan">shopping_cart</i>
                 </td>
                 <td><a href="{% url 'show_employeecashbook' empid=employee.id %}"><i class="small material-icons icon-cyan">description</i></a></td>
-                <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+                
             </tr>
             {% endfor %}
         </tbody>

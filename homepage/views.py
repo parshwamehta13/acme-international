@@ -55,12 +55,13 @@ def add_employee(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
         if request.method=="POST":
             username=request.POST['username']
+            email = request.POST['email']
             password = 'acmeinternational123'
             first_name = request.POST['first_name']
             last_name = request.POST['last_name']
             salary = request.POST['salary']
             cash_in_hand = request.POST['cash_in_hand']
-            user = User.objects.create_user(username=username,password=password,first_name=first_name,last_name=last_name)
+            user = User.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name)
             group = Group.objects.get(name='Employee')
             user.groups.add(group)
             employee_detail = Employee_Detail(user=user,salary=salary,cash_in_hand=cash_in_hand)

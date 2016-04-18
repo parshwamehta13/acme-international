@@ -2,17 +2,24 @@
 
 
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="#"><i class="material-icons left">add</i>Add Trip</a>
-    </a>
-</div>
+
 <div class="container-fluid">
 	 
-	
-		<div class="row">
-		<h4 class="col s2 headingcolour">Expense List</h4>  
-		<a  href="{% url 'tripexpenses_new' %}" class="btn-floating btn-large waves-effect waves-light   teal darken-1"><i class="material-icons">add</i></a>
-	</div>
+	<div class="row">
+        <div class="row"></div>
+         <div class="row"></div>
+	 <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s2">Expenses List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'tripexpenses_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
 
 		{% if expenses %}
 		

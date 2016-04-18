@@ -1,12 +1,15 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'account_new' %}"><i class="material-icons left">add</i>Add Account</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Bank Accounts List</h4>
+        
+    </div>
+     <div class="row">
+        
+    </div>
+     <div class="row">
+        
     </div>
     <form method="POST" class="post-form">
         {% csrf_token %}
@@ -27,32 +30,46 @@
             </div>
         </div>
     </form>
-    {% if accounts_list %}		
+    <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s3">Bank account List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'account_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
+    {% if accounts_list %}      
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
-                <th>Edit</th>
-                <th>Add/View Transaction(s)</th>
+               
                 <th>Account Number</th>
                 <th>Account Holder</th>
                 <th>Bank</th>
-                <th>Amount</th>                
+                <th>Amount</th>  
+                 <th>Edit</th>
+                <th>Add/View Transaction(s)</th>              
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            {% for account in accounts_list %}	    	
+            {% for account in accounts_list %}          
             <tr>
-                <td>
-                    <a href="{% url 'account_edit' account_number=account.account_number %}" class="btn-floating btn-small teal darken-1">
-                    <i class="small material-icons ">mode_edit</i></a>
-                </td>
-                <td><a href="{% url 'show_transaction' transaction=account.account_number %}"><i class="small material-icons">visibility</i></a>
-                </td>    
+               
                 <td>{{account.account_number}}</td>
                 <td>{{account.account_holder}}</td>
                 <td>{{account.bank}}</td>
                 <td>{{account.amount}}</td>
+                 <td>
+                    <a href="{% url 'account_edit' account_number=account.account_number %}">
+                    <i class="small material-icons icon-cyan">mode_edit</i></a>
+                </td>
+                <td><a href="{% url 'show_transaction' transaction=account.account_number %}"><i class="small material-icons icon-cyan">visibility</i></a>
+                </td>    
             </tr>
             {% endfor %}
         </tbody>

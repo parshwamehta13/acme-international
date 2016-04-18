@@ -1,69 +1,50 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="row"></div>
-<div class="row"></div>
-<h4 class="center-align headingcolour">Add Document</h4>
-<div class="heading-divider grey lighten-2"> </div>
-<div class="row"></div>
-<div class="row"></div>
-<div class="row"></div>
-{% if form.errors %}
-    
-   <div class="row alert alert-error">
-      <h6 class="center-align errormess"> * Invalid Entries </h6> 
-         <strong>{{ error|escape }}</strong>
-   </div>
-       
-{% endif %}
-<form method="POST" enctype="multipart/form-data" class="post-form ">
-    {% csrf_token %}
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col s3 offset-s5">
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span>Bill</span>
-                    {{ form.upload }}
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
-                </div>
-            </div>
-        </div>
+          <div class="row"></div>
+           <div class="row"></div>
+            <div class="row"></div>
+        <h4 class="headingcolour col l2 s12">Expense List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'tripexpenses_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
+    <div class="row">
+       
     </div>
-    <div class="row extra-bottom-padding">
-        <div class="col-sm-2 col-sm-offset-2">
-            <label for="id_driver">Amount</label>
-        </div>
-        <div class="col-sm-5">
-            {{ form.amount}} <br>
-        </div>
-    </div>
-    <div class="row extra-bottom-padding">
-        <div class="col-sm-2 col-sm-offset-2">
-            <label for="id_driver"> Reason</label>
-        </div>
-        <div class="col-sm-5">
-            {{ form.reason}} <br>
-        </div>
-    </div>
-    <div class="row extra-bottom-padding">
-        <div class="col-sm-2 col-sm-offset-2">
-            <label for="id_driver"> Trip</label>
-        </div>
-        <div class="col-sm-5">
-            {{ form.trip}} <br>
-        </div>
-    </div>
-    <div class="row extra-bottom-padding">
-        <div class="col-sm-2 col-sm-offset-2">
-            <label for="id_driver"> Employee</label>
-        </div>
-        <div class="col-sm-5">
-            {{ form.employee}} <br>
-        </div>
-    </div>
-    <div class="center-align">
-        <button type="submit" value="Upload" class="save btn btn-default">Save</button>
-    </div>
+    {% if expenses %}
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Bill</th>
+                <th>Amount</th>
+                <th>Reason</th>
+                <th>Trip</th>
+                <th>Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td><a href="/media/{{expense.bill}}">{{expense.bill}}</a></td>
+                <td>{{expense.amount}}</td>
+                <td>{{expense.reason}}</td>
+                <td>{{expense.trip}}</td>
+                <td>{{expense.employee}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No results !</p>
+    {% endif %}
+</div>
 </form>
 {% endblock %}

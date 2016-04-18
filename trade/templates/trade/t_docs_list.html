@@ -1,13 +1,26 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'docs_new_t' %}"><i class="material-icons left">add</i>Add Document</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Transaction {{transaction_number }} Document List</h4>
+        <div class="row"></div>
+            <div class="row"></div>
+                <div class="row"></div>
+        
+         <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s5">Transaction - <b>{{transaction_number }}</b> Document List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'docs_new_t' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
     </div> 
+   
     {% if docus %}
     <table class="striped">
         <thead>
@@ -18,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for docs in docus %}	    	
+            {% for docs in docus %}         
             <tr>
                 <td><a href="/media/{{docs.upload}}">{{docs.upload}}</a></td>
                 <td>{{docs.name}}</td>
@@ -28,7 +41,9 @@
         </tbody>
     </table>
     {% else %}
-    <p>No results !</p>
+     <div class="row"></div>
+            <div class="row"></div>
+    <h5 class="center-align headingcolour">No results !</h5>
     {% endif %}
 </div>
 </form>

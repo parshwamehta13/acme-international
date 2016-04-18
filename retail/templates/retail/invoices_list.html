@@ -1,13 +1,14 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'invoice_new' %}"><i class="material-icons left">add</i>Add Invoice</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Invoice List</h4>
+        
     </div>  
+     <div class="row">
+        <div class="row"></div>
+          <div class="row"></div>
+         <div class="row"></div>
     <form method="POST" class="post-form">
         {% csrf_token %}
         <div class="row">
@@ -27,12 +28,23 @@
             </div>
         </div>
     </form>
+    <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s2">Invoices List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'invoice_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
     {% if invoice_list %}
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
-                <th>Edit</th>
-                <th>Delete</th>
+                
                 <th>Number</th>
                 <th>Date</th>
                 <th>Invoiced To</th>
@@ -41,16 +53,14 @@
                 <th>Unit Price</th>
                 <th>Total Price</th>
                 <th>VAT</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {% for invoice in invoice_list %}
             <tr>
-                <td>  <a href="{% url 'invoice_edit' invoice_number=invoice.id %}" class="btn-floating btn-small teal darken-1">
-                    <i class="small material-icons">mode_edit</i>
-                    </a>
-                </td>
-                <td><a href="{% url 'delete_invoice' did=invoice.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+               
                 <td>{{invoice.invoice_number}}</td>
                 <td>{{invoice.date}}</td>
                 <td>{{invoice.invoiced_to}}</td>
@@ -59,6 +69,11 @@
                 <td>{{invoice.unit_price}}</td>
                 <td>{{invoice.total_price}}</td>
                 <td>{{invoice.vat}}</td>
+                 <td>  <a href="{% url 'invoice_edit' invoice_number=invoice.id %}">
+                    <i class="small material-icons icon-cyan">mode_edit</i>
+                    </a>
+                </td>
+                <td><a href="{% url 'delete_invoice' did=invoice.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 
             </tr>
             {% endfor %}

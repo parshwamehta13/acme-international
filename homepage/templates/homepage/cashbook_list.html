@@ -1,13 +1,28 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'cashbook_new' %}"><i class="material-icons left">add</i>Add Cashbook</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Cashbook List</h4>
+        
     </div>
+    <div class="row">
+        
+    </div>
+    <div class="row">
+        
+    </div>
+    <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s3">Cashbook List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'cashbook_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
     {% if cashbook %}
     <table class="striped centered bordered responsive-table">
         <thead>
@@ -17,7 +32,7 @@
                 <th>Amount added </th>
                 <th>Transaction Date</th>
                 <th>Transaction Details</th>
-                <th></th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +43,7 @@
                 <td>{{cash.amount_added}}</td>
                 <td>{{cash.transaction_date}}</td>
                 <td>{{cash.transaction_details}}</td>
-                <td>  <a href="{% url 'cashbook_edit' cashbookid=cash.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
+                <td>  <a href="{% url 'cashbook_edit' cashbookid=cash.id %}"><i class="small material-icons icon-cyan">mode_edit</i></a>
                 </td>
             </tr>
             {% endfor %}

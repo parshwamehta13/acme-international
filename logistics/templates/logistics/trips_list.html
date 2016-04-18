@@ -1,42 +1,53 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'trip_new' %}"><i class="material-icons left">add</i>Add Trip</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Trips List</h4>
+        <div class="row"></div>
+         <div class="row"></div>
+         
     </div>
     <form method="POST" class="post-form">
         {% csrf_token %}
+       
         <div class="row">
-            <div class="col l4 s6">
-                <label for="search_item"> </label>    	
+            <div class="col l4 m6 s6">
+                <label for="search_item"> </label>      
                 {{ form.trip_search_item}} <br>
             </div>
-            <div class="col l2 s6">
-                <label for="search_item_by"> </label>    	
+            <div class="col l4 m6 s6">
+                <label for="search_item_by"> </label>       
                 {{ form.trip_type}} <br>
             </div>
-            <div class="col l1 s6">
+            <div class="col l1 m6 s6">
                 <button type="submit" class="save btn btn-default red darken-1">Go</button>
             </div>
-            <div class="col l1 s6">
+            <div class="col l2 m6 s6">
                 <a href="{% url 'trips_admin' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
             </div>
         </div>
+   
     </form>
+ <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s2">Trips List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'trip_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
+
     {% if trip_list %}
-    <table class="striped centered bordered responsive-table">
+    <table class="striped bordered responsive-table">
         <thead>
             <tr>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>Document(s)</th>
-                <th>Expense(s)</th>
+                
                 <th>Trip Id</th>
-                <th>Registration number</th>
+                <th>Truck number</th>
                 <th>Source </th>
                 <th>Destination</th>
                 <th>Distance</th>
@@ -44,28 +55,41 @@
                 <th>Weight</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>More options</th>
             </tr>
         </thead>
         <tbody>
             {% for trip in trip_list %}
             <tr>
-                <td>  <a href="{% url 'trip_edit' truck_number=trip.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
-                </td>
-                <td><a href="{% url 'delete_trip' did=trip.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
-                <td>
-                    <a href="{% url 'show_docs' docs=trip.id %}">
-                        <i class="small material-icons icon-cyan">description</i>
-                </td>
-                <td><a href="{% url 'show_tripexpenses' tripid=trip.id %}"><i class="small material-icons icon-cyan">shopping_cart</i></td>
+                
                 <td>{{trip.id}}</td>
                 <td>{{trip.truck_registration_number}}</td>
                 <td>{{trip.trip_source}}</td>
                 <td>{{trip.trip_destination}}</td>
-                <td>{{trip.trip_distance}}</td>	        
+                <td>{{trip.trip_distance}}</td>         
                 <td>{{trip.trip_goods_type}}</td>
                 <td>{{trip.trip_weight}}</td>
                 <td>{{trip.trip_start_date}}</td>
                 <td>{{trip.trip_end_date}}</td>
+                <td>
+                 <ul id="dropdown9" class="dropdown-content">
+    <li><a href="{% url 'trip_edit' truck_number=trip.id %}"><i class="small material-icons">mode_edit</i></a></li>
+    <li><a href="{% url 'delete_trip' did=trip.id %}"><i class="small material-icons icon-cyan">delete</i></a></li>
+    <li><a href="{% url 'show_tripexpenses' tripid=trip.id %}">Expenses</li>
+    <li><a href="{% url 'show_docs' docs=trip.id %}"> Documents
+                       </li>
+  </ul>
+  <a class="dropdown-button" href="#!" data-activates="dropdown9"> <i class="material-icons icon-cyan">subject</i></a>
+  
+</td>
+                <!-- <td>  <a href="{% url 'trip_edit' truck_number=trip.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a> -->
+                <!-- </td> -->
+                <!-- <td><a href="{% url 'delete_trip' did=trip.id %}"><i class="small material-icons icon-cyan">delete</i></a></td> -->
+                <!-- <td> -->
+                    <!-- <a href="{% url 'show_docs' docs=trip.id %}"> -->
+                        <!-- <i class="small material-icons icon-cyan">description</i> -->
+                <!-- </td> -->
+                <!-- <td><a href="{% url 'show_tripexpenses' tripid=trip.id %}"><i class="small material-icons icon-cyan">shopping_cart</i></td> -->
                 <!-- <td><a href="{% url 'delete_trip' did=trip.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 <td>  <a href="{% url 'trip_edit' truck_number=trip.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
                 </td> -->

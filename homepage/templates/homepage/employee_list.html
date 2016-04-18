@@ -1,12 +1,15 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'add_employee' %}"><i class="material-icons left">add</i>Add Employee</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Employee List</h4>
+       
+    </div>
+    <div class="row">
+       
+    </div>
+    <div class="row">
+       
     </div>
     <form method="POST" class="post-form">
         {% csrf_token %}
@@ -27,23 +30,33 @@
             </div>
         </div>
     </form>
+     <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col l3 s12">Employee List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'add_employee' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
     {% if employees_list %}
     <table class="striped centered bordered responsive-table">
         <thead>
             <tr>
-                <th>Delete</th>
                 <th>User</th>
                 <th>Salary</th>
                 <th>Cash in hand</th>
                 <th>View trip expenses</th>
                 <th> View/Add employee cashbook </th>
-                <th></th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             {% for employee in employees_list %}
             <tr>
-                <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
                 <td>{{employee.user}}</td>
                 <td>{{employee.salary}}</td>
                 <td>{{employee.cash_in_hand}}</td>
@@ -52,7 +65,7 @@
                         <i class="material-icons icon-cyan">shopping_cart</i>
                 </td>
                 <td><a href="{% url 'show_employeecashbook' empid=employee.id %}"><i class="small material-icons icon-cyan">description</i></a></td>
-                
+                <td><a href="{% url 'delete_employee' empid=employee.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
             </tr>
             {% endfor %}
         </tbody>

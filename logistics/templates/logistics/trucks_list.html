@@ -1,49 +1,84 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-   <a class="waves-effect waves-light btn grey darken-1" href="{% url 'truck_new' %}"><i class="material-icons left">add</i>Add Truck</a>
-   </a>
-</div>
-<div class="container-fluid">
-   <div class="row">
-      <h4 class="center-align headingcolour">Trucks List</h4>
-   </div>
+<div class="row"></div>
+<div class="row"></div>
+
+ 
+
+<div>
+    
+    <div class="row"></div>
+   
+     <div class="row"></div>
+      <div class="row"></div>
+  <div class="centre-align">
    <form method="POST" class="post-form">
       {% csrf_token %}
+      
       <div class="row">
-         <div class="col l4 s6">
+         <div class="col l4 m6 s6">
             <label for="search_item"> </label>     
             {{ form.truck_search_item}} <br>
          </div>
-         <div class="col l2 s6">
+         <div class="col l4 m6 s6">
             <label for="search_item_by"> </label>     
             {{ form.truck_type}} <br>
          </div>
-         <div class="col l1 s6">
-            <button type="submit" class="save btn btn-default red darken-1">Go</button>
+         <div class="col l1 m6 s6">
+            <button type="submit" class="save btn btn-default red darken-1 responsive ">Go</button>
          </div>
-         <div class="col l1 s6">
-            <a href="{% url 'trucks_admin' %}" class="waves-effect waves-light btn   teal darken-1">Clear</a>
+         <div class="col l1 m6 s6">
+            <a href="{% url 'trucks_admin' %}" class="waves-effect waves-light btn   teal darken-1 responsive ">Clear</a>
          </div>
-      </div>
+     </div>
+  </div>
+      </form>
+     
+      <div class="row">
+          <div class="row"></div>
+        <h4 class="headingcolour col s2">Trucks List</h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'truck_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   </div>
+       <div class="row">
+         
+    <div class="row"></div>
+         
+     
+       
+   </div>
+   </div>
       {% if truck_list %}
-      <table class="striped centered bordered responsive-table">
+      <div style="left: 240px;">
+      <table class="striped bordered responsive-table">
+         
          <thead>
             <tr>
-               <th>Delete</th>
-               <th>Registeration number</th>
+               
+               <th>Truck number</th>
                <th>Driver</th>
                <th>Truck Type</th>
+               <th>Edit</th>
+               <th>Delete</th>
             </tr>
          </thead>
+    
          <tbody>
             {% for truck in truck_list %}
             <tr>
-               <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
+               
                <td>{{truck.truck_registration_number}}</td>
                <td>{{truck.truck_driver}}</td>
                <td>{{truck.truck_type}}</td>
-               
+               <td> <a href="{% url 'truck_edit' truck_registration_number=truck.id %}"><i class="small material-icons icon-cyan">mode_edit</i></a></td>
+               <td><a href="{% url 'delete_truck' did=truck.id %}"><i class="small material-icons icon-cyan">delete</i></td>
+              
             </tr>
             {% endfor %}
          </tbody>
@@ -51,6 +86,7 @@
       {% else %}
       <p>No trucks registered !</p>
       {% endif %}
+   </div>
 </div>
-</form>
+
 {% endblock %}

@@ -1,13 +1,22 @@
 {% extends 'logistics/firstpage.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
-    <a class="waves-effect waves-light btn grey darken-1" href="{% url 'account_transaction_new' %}"><i class="material-icons left">add</i>Add Transaction</a>
-    </a>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-        <h4 class="center-align headingcolour">Account Transaction-{{account_no}}</h4>
-    </div>
+        <div class="row">
+          <div class="row"></div>
+          <div class="row"></div>
+          <div class="row"></div>
+        <h4 class="headingcolour col s4">Account Transaction- <b>{{account_no}}</b></h4>
+   
+       <div class="col s3" >
+      <a class="btn-floating btn-large teal darken-1 " href="{% url 'account_transaction_new' %}">
+      <i class="large material-icons">add</i>
+    </a>
+   </div>
+     
+       
+   
     {% if trans_list %}
     <table class="striped centered bordered responsive-table">
         <thead>
@@ -20,7 +29,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for trans in trans_list %}	    	
+            {% for trans in trans_list %}       
             <tr>
                 <td>{{trans.account_number}}</td>
                 <td>{{trans.transaction_date}}</td>

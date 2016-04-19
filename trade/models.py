@@ -9,7 +9,7 @@ from django.db.models.signals import post_save
 @python_2_unicode_compatible
 class Good(models.Model):
 	good_type = models.CharField(max_length=100,default='Oil')
-	good_quantity = models.IntegerField(default=0)
+	good_quantity = models.PositiveIntegerField(default=0)
 
 	def __str__(self):
 		return self.good_type

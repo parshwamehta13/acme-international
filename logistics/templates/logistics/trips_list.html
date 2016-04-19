@@ -53,6 +53,7 @@
                 <th>Distance</th>
                 <th>Good Type</th>
                 <th>Weight</th>
+                <th>Container Number</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>More options</th>
@@ -69,6 +70,7 @@
                 <td>{{trip.trip_distance}}</td>         
                 <td>{{trip.trip_goods_type}}</td>
                 <td>{{trip.trip_weight}}</td>
+                <td>{{trip.trip_container_number}}</td>
                 <td>{{trip.trip_start_date}}</td>
                 <td>{{trip.trip_end_date}}</td>
                 <td>
@@ -82,17 +84,6 @@
   <a class="dropdown-button" href="#!" data-activates="dropdown9"> <i class="material-icons icon-cyan">subject</i></a>
   
 </td>
-                <!-- <td>  <a href="{% url 'trip_edit' truck_number=trip.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a> -->
-                <!-- </td> -->
-                <!-- <td><a href="{% url 'delete_trip' did=trip.id %}"><i class="small material-icons icon-cyan">delete</i></a></td> -->
-                <!-- <td> -->
-                    <!-- <a href="{% url 'show_docs' docs=trip.id %}"> -->
-                        <!-- <i class="small material-icons icon-cyan">description</i> -->
-                <!-- </td> -->
-                <!-- <td><a href="{% url 'show_tripexpenses' tripid=trip.id %}"><i class="small material-icons icon-cyan">shopping_cart</i></td> -->
-                <!-- <td><a href="{% url 'delete_trip' did=trip.id %}"><i class="small material-icons icon-cyan">delete</i></a></td>
-                <td>  <a href="{% url 'trip_edit' truck_number=trip.id %}" class="btn-floating btn-small teal darken-1"><i class="small material-icons">mode_edit</i></a>
-                </td> -->
                 
             </tr>
             {% endfor %}

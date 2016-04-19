@@ -9,7 +9,7 @@
           <div class="row"></div>
           <div class="row"></div>
           <div class="row"></div>
-        <h4 class="headingcolour col s3">Cashbook List List</h4>
+        <h4 class="headingcolour col s3">Cashbook List</h4>
    
        <div class="col s3" >
       <a class="btn-floating btn-large teal darken-1 " href="{% url 'cashbook_new_all' %}">
@@ -24,7 +24,7 @@
         <thead>
             <tr>
                 
-                <th>Employee number</th>
+                <th>Employee</th>
                 <th>Account number</th>
                 <th>Amount added </th>
                 <th>Transaction Date</th>
@@ -36,7 +36,7 @@
             {% for cash in cashbook %}
             <tr>
                 
-                <td>{{cash.employee_number}}</td>
+                <td>{{cash.employee_number.user}}</td>
                 <td>{{cash.account_number}}</td>
                 <td>{{cash.amount_added}}</td>
                 <td>{{cash.transaction_date}}</td>

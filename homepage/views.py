@@ -72,6 +72,24 @@ def add_employee(request):
     else:
         return redirect(index)
 
+# Method to Add Employee
+def add_admin(request):
+    if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
+        if request.method=="POST":
+            username=request.POST['username']
+            email = request.POST['email']
+            password = request.POST['password']
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            user = User.objects.create_user(username=username,password=password,email=email,first_name=first_name,last_name=last_name,is_staff=True,is_active=True,is_superuser=True)
+            group = Group.objects.get(name='Admin')
+            user.groups.add(group)
+            return redirect(employee_list)
+        else:
+            return render (request,'homepage/add_admin.html',{'title':"Add Admin"})
+    else:
+        return redirect(index)
+
 # Method to view all the employee and its detail
 def employee_list(request):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:

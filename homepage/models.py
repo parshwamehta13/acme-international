@@ -6,11 +6,11 @@ from django.db import models
 # Model for Employee Details
 class Employee_Detail(models.Model):
 	user = models.ForeignKey(User)
-	salary = models.IntegerField()
+	salary = models.DecimalField(default=0,max_digits=12,decimal_places=2)
 	cash_in_hand = models.DecimalField(default=0,max_digits=12,decimal_places=2)
 
 	def __str__(self):
-		return str(self.user.username)+" "+str(self.salary)
+		return str(self.user.username)
 
 # Model for Task
 class Task (models.Model):

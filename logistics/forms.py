@@ -42,7 +42,7 @@ class ExpenseForm(forms.ModelForm):
 
     class Meta:
         model = Expense
-        fields = ('bill', 'amount','reason','trip','employee',)
+        fields = ('bill', 'amount','reason','trip')
     
 
 

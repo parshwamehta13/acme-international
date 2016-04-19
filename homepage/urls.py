@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^viewtrip/$', views.view_trip, name='trips_new'),
     url(r'^logout/$',views.logout_user, name='logout_user'),
     url(r'^addemployee/$',views.add_employee, name='add_employee'),
+    url(r'^showexpensess/$',views.show_emp_trip_expenses, name='show_emp_trip_expenses'),
     url(r'^logistics/',include('logistics.urls')),
     url(r'^accounts/',include('accounts.urls')),
     url(r'^trade/',include('trade.urls')),

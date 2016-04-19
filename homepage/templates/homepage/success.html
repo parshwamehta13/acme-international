@@ -4,13 +4,12 @@
 <div class="container-fluid">
     <h4 class="center-align headingcolour">Task List</h4>
     {% if task_list %}
-    <table class="striped">
+    <table class="striped responsive-table centered">
         <thead>
             <tr>
-                <th>Employee</th>
                 <th>Assigned On</th>
                 <th>Deadline</th>
-                <th>Discription</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Priority</th>
             </tr>
@@ -18,14 +17,13 @@
         <tbody>
             {% for task in task_list %}
             <tr>
-                <td>{{task.assigned_to}}</td>
                 <td>{{task.assigned_on}}</td>
                 <td>{{task.deadline}}</td>
                 <td>{{task.task_description}}</td>
                 {% if not task.status %}
                 <td><span class="glyphicon glyphicon-remove"></span></td>
                 {% else %}
-                <td><span class="glyphicon glyphicon-ok"></span></td>
+                <td><i class="small material-icons">done</i></td>
                 {% endif %}
                 <td>{{task.priority}}</td>
             </tr>

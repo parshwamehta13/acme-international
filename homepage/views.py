@@ -22,7 +22,7 @@ def index(request):
             return redirect(trips_admin)
         else:
             task_list = Task.objects.filter(assigned_to=user_logged)
-            return render(request,'homepage/success.html',{'task_list':task_list})
+            return render(request,'homepage/success.html',{'task_list':task_list,'title':'Task List'})
     if request.method=='POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -171,7 +171,7 @@ def view_trip(request):
     else:
         trip_list = Trip.objects.filter(truck_registration_number__truck_driver=user_logged)
         form = TripSearchForm()
-        return render(request, 'homepage/success_1.html',{'trip_list':trip_list,'form':form})
+        return render(request, 'homepage/success_1.html',{'trip_list':trip_list,'form':form,'title':'Trips'})
 
 # Method to edit a task
 def task_edit(request, taskid):
@@ -192,10 +192,17 @@ def task_edit(request, taskid):
 # Method to show employee his/her Expense
 def show_emptripexpenses(request,empid):
     if request.user.is_authenticated() and request.user.groups.all()[0].id==2:
-        expenses = Expense.objects.filter(employee=empid)
-        return render(request, 'homepage/expenses_list_emp.html', {'expenses': expenses,'title':"Trip Expenses"})
+        expenses = Expense.objects.filter(trip__truck_registration_number__truck_driver__id=empid)
+        return render(request, 'homepage/expenses_list_emp2.html', {'expenses': expenses,'title':"Trip Expenses"})
     else:
         return redirect(index)
+
+# Method to show employee his/her Expense
+def show_emp_trip_expenses(request):
+    emp_id = request.user.id
+    print request.user
+    expenses = Expense.objects.filter(trip__truck_registration_number__truck_driver__id=emp_id)
+    return render(request, 'homepage/expenses_list_emp.html', {'expenses': expenses,'title':"Trip Expenses"})
 
 # Method to show employee his/her cashbook
 def show_employeecashbook(request,empid):

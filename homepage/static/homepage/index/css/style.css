@@ -1,11 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
-  background-color: #00796b;
+  background-color: #80cbc4;
+  margin-bottom: 20px;
 }
+
+.login-form{
+  margin-bottom: 20px;
+}
+
+.forget_password{
+  text-decoration: none;
+  color: #0d3c5f;
+  font-weight: bold;
+}
+
 .form {
   position: relative;
   z-index: 1;
@@ -31,7 +44,7 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #009688;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -42,7 +55,7 @@
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: #00796b;
 }
 .form .message {
   margin: 15px 0 0;
@@ -98,7 +111,7 @@
 
 
 body {
-  background-color: #00796b; /* fallback for old browsers */
+  background-color: #80cbc4; /* fallback for old browsers */
  
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;

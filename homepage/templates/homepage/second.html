@@ -2,7 +2,7 @@
 <html>
     {% load staticfiles %}
     <head>
-        <title>Homepage</title>
+        <title>{{title}}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -19,13 +19,15 @@
     <body>
         <nav>
             <div class="nav-wrapper teal lighten-1">
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <ul id="nav-mobile" class="left">
                     <li><a href="{% url 'trips_new' %}">Trips</a></li>
                     <li><a href="{% url 'index' %}">Tasks</a></li>
+                    <li><a href="{% url 'show_emp_trip_expenses' %}">View Expenses</a></li>
                 </ul>
                 <ul id="nav-mobile" class="right">
                     <li><a href="{% url 'logout_user' %}"><b style="font-size: 20px">Logout</b></a></li>
                 </ul>
+
             </div>
         </nav>
         <div class="section">

@@ -49,7 +49,6 @@ class Expense (models.Model):
 	amount = models.DecimalField(max_digits=12,decimal_places=2)
 	reason = models.TextField(blank=True)
 	trip = models.ForeignKey(Trip)
-	employee = models.ForeignKey(Employee_Detail)
 
 	def __str__(self):
 		return str(self.trip.truck_registration_number)+" "+str(self.amount)

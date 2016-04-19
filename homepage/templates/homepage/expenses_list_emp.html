@@ -1,32 +1,30 @@
-{% extends 'logistics/firstpage.html' %}
+{% extends 'homepage/second.html' %}
 {% block content %}
-<div class="fixed-action-btn" style="top: 60px; right: 24px;">
+<!-- <div class="fixed-action-btn" style="top: 60px; right: 24px;">
     <a class="waves-effect waves-light btn grey darken-1" href="{% url 'tripexpenses_new' %}"><i class="material-icons left">add</i>Add Expense</a>
     </a>
-</div>
+</div> -->
 <div class="container-fluid">
     <div class="row">
         <h4 class="center-align headingcolour">Expense List</h4>
     </div>
     {% if expenses %}
-    <table class="striped">
+    <table class="striped responsive-table centered">
         <thead>
             <tr>
                 <th>Bill</th>
                 <th>Amount</th>
                 <th>Reason</th>
                 <th>Trip</th>
-                <th>Employee</th>
             </tr>
         </thead>
         <tbody>
             {% for expense in expenses %}
             <tr>
-                <td><a href="/media/{{expense.bill}}">{{expense.bill }}</a></td>
+                <td><a href="/media/{{expense.bill}}">{{expense.bill}}</a></td>
                 <td>{{expense.amount}}</td>
                 <td>{{expense.reason}}</td>
                 <td>{{expense.trip}}</td>
-                <td>{{expense.employee}}</td>
             </tr>
             {% endfor %}
         </tbody>
